@@ -33,7 +33,7 @@ If \eqn{E \le \frac{D}{2}}{E\le D/2} then:
 \deqn{Talmud(E,d) = CEA(E,d/2).}{Talmud(E,d)=CEA(E,d/2).}
 
 If \eqn{E \ge \frac{D}{2}}{E\ge D/2} then:
-\deqn{Talmud(E,d) = CEL(E,d/2) = d-CEA(D-E,d/2).}{Talmud(E,d) = CEL(E,d/2) = d-CEA(D-E,d/2).}
+\deqn{Talmud(E,d) =d/2+ CEL(E-D/2,d/2) = d-CEA(D-E,d/2).}{Talmud(E,d) =d/2+ CEL(E-D/2,d/2) = d-CEA(D-E,d/2).}
 
 The Talmud rule when applied to a two-claimant problem is often referred to as the contested garment rule and coincides with concede-and-divide rule.
 The Talmud rule corresponds to the nucleolus of the associated (pessimistic) coalitional game.

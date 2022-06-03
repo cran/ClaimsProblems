@@ -49,11 +49,10 @@ lorenzdominance(E,d,Rules)
 \references{
 Lorenz, M. O. (1905). Methods of measuring the concentration of wealth. Publications of the American statistical association, 9(70), 209-219.
 
-Mirás Calvo, M.A., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2021). Deviation from proportionality and Lorenz-dominance between
-the average of awards and the standard rules for claims problems. Working paper 2021-01, ECOBAS.
+Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez, E. (2022). Deviation from proportionality and Lorenz-domination for claims problems. Rev Econ Design. \doi{10.1007/s10058-022-00300-y}
 
-Mirás Calvo, M.A., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2021). The adjusted proportional and the minimal overlap rules restricted to the lower-half, higher-half, and middle domains. Working paper 2021-02, ECOBAS.
+Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2021). The adjusted proportional and the minimal overlap rules restricted to the lower-half, higher-half, and middle domains. Working paper 2021-02, ECOBAS.
 }
 \seealso{
-\link{cumulativecurve}, \link{proportionalityindex}, \link{indexpath}, \link{lorenzcurve}, \link{giniindex}.
+\link{cumawardscurve}, \link{deviationindex}, \link{indexgpath}, \link{lorenzcurve}, \link{giniindex}.
 }

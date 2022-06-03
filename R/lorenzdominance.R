@@ -8,8 +8,6 @@
 #' If both awards vectors are equal then cod = 2. If the awards vectors are not Lorenz-comparable then cod = 0.
 #' If the awards vector  selected by the first rule Lorenz-dominates the awards vector  selected by the second rule then cod = 1; otherwise cod = -1.
 #' If Info = TRUE, it also gives the corresponding cumulative sums.
-#'
-#'
 #' @details Let \eqn{E\ge 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{d} the vector of claims
 #' with \eqn{d\ge 0} and such that \eqn{\sum_{i=1}^{n} d_i\ge E,\;}{} the sum of claims exceeds the endowment.
 #'
@@ -25,16 +23,15 @@
 #'
 #' Let \eqn{R} and \eqn{R'} be two rules. We say that \eqn{R} Lorenz-dominates \eqn{R'} if \eqn{R(E,d)} Lorenz-dominates \eqn{R'(E,d)} for all \eqn{(E,d)}.
 #'
-#' @seealso \link{cumulativecurve}, \link{proportionalityindex}, \link{indexpath}, \link{lorenzcurve}, \link{giniindex}.
+#' @seealso \link{cumawardscurve}, \link{deviationindex}, \link{indexgpath}, \link{lorenzcurve}, \link{giniindex}.
 #' @examples
 #' E=10
 #' d=c(2,4,7,8)
 #' Rules=c(AA,CEA)
 #' lorenzdominance(E,d,Rules)
 #' @references  Lorenz, M. O. (1905). Methods of measuring the concentration of wealth. Publications of the American statistical association, 9(70), 209-219.
-#' @references  Mirás Calvo, M.A., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2021). Deviation from proportionality and Lorenz-dominance between
-#' the average of awards and the standard rules for claims problems. Working paper 2021-01, ECOBAS.
-#' @references Mirás Calvo, M.A., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2021). The adjusted proportional and the minimal overlap rules restricted to the lower-half, higher-half, and middle domains. Working paper 2021-02, ECOBAS.
+#' @references Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez, E. (2022). Deviation from proportionality and Lorenz-domination for claims problems. Rev Econ Design. \doi{10.1007/s10058-022-00300-y}
+#' @references Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2021). The adjusted proportional and the minimal overlap rules restricted to the lower-half, higher-half, and middle domains. Working paper 2021-02, ECOBAS.
 #' @export
 
 lorenzdominance = function(E, d, Rules, Info = FALSE) {

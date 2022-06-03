@@ -46,7 +46,7 @@ MOi(E,d) = d1/n + (d2-d1)/(n-1) + \dots + (di-d(i-1))/(n-i+1), if i\le k}
 }
 \examples{
 E=10
-d=c(2,4,7,9)
+d=c(2,4,7,8)
 MO(E,d)
 }
 \references{

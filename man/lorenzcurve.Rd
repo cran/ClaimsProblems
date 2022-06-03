@@ -13,16 +13,16 @@ lorenzcurve(E, d, Rules, col = NULL, legend = TRUE)
 
 \item{Rules}{The rules: AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, Talmud.}
 
-\item{col}{The colors. If col=NULL then the sequence of default colors is:
+\item{col}{The colours. If col=NULL then the sequence of default colors is:
 c("red", "blue", "green", "yellow", "pink", "coral4", "darkgray", "burlywood3", "black", "darkorange", "darkviolet").}
 
-\item{legend}{A logical value. The color legend is shown if legend=TRUE.}
+\item{legend}{A logical value. The colour legend is shown if legend=TRUE.}
 }
 \value{
 The graphical representation of the Lorenz curve of a rule (or several rules) for a claims problem.
 }
 \description{
-This function returns the Lorenz curve of a rule for a claims problem.
+This function returns the Lorenz curve of any rule for a claims problem.
 }
 \details{
 Let \eqn{E> 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{d} the vector of claims
@@ -47,9 +47,8 @@ lorenzcurve(E,d,Rules,col)
 \references{
 Lorenz, M. O. (1905). Methods of measuring the concentration of wealth. Publications of the American statistical association, 9(70), 209-219.
 
-Mirás Calvo, M.A., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2021). Deviation from proportionality and Lorenz-dominance between
-the average of awards and the standard rules for claims problems. Working paper 2021-01, ECOBAS.
+Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez, E. (2022). Deviation from proportionality and Lorenz-domination for claims problems. Rev Econ Design. \doi{10.1007/s10058-022-00300-y}
 }
 \seealso{
-\link{giniindex}, \link{cumulativecurve}, \link{proportionalityindex}, \link{indexpath}, \link{lorenzdominance}.
+\link{giniindex}, \link{cumawardscurve}, \link{deviationindex}, \link{indexgpath}, \link{lorenzdominance}.
 }

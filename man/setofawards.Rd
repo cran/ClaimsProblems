@@ -13,15 +13,17 @@ setofawards(E, d, draw = TRUE, col = NULL)
 
 \item{draw}{A logical value.}
 
-\item{col}{The color.}
+\item{col}{The colour.}
 }
 \value{
-The vertices of the set of awards vectors for a claims problem with 2, 3, or 4 claimants. For two-claimant and three-claimant problems, if draw = TRUE it plots the set of awards vectors.
+The vertices of the set of awards vectors for any claims problem.
+For two-claimant and three-claimant problems, if draw = TRUE it plots the set of awards vectors.
 For a four-claimant problem, if draw = TRUE, it plots the projection of the set of awards vector over the euclidean space of the first three coordinates.
-The default colors (col = NULL) are: red for two-claimant problems, beige for three-claimant problems, and white for four-claimant problems.
+For a claims problem with more than four claimants, it only displays the vertices of the set of awards.
+The default colours (col = NULL) are: red for two-claimant problems, beige for three-claimant problems, and white for four-claimant problems.
 }
 \description{
-This function plots the set of awards vectors for a claims problem with 2, 3, or 4 claimants and returns its vertices.
+This function plots the set of awards vectors for a claims problem with 2, 3, or 4 claimants and returns its vertices for any problem.
 }
 \details{
 Let \eqn{E\ge 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{d} the vector of claims

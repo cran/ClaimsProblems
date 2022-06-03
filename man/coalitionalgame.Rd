@@ -82,6 +82,9 @@ v_pes=v$v_pessimistic_lex
 v_opt=v$v_optimistic_lex
 v_opt[1:14]==10-v_pes[14:1]
 }
+\references{
+O’Neill B (1982) A problem of rights arbitration from the Talmud. Math Soc Sci 2:345–371.
+}
 \seealso{
 \link{setofawards}
 }

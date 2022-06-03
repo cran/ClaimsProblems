@@ -4,7 +4,7 @@
 \alias{allrules}
 \title{Summary of the division rules}
 \usage{
-allrules(E, d, draw = TRUE)
+allrules(E, d, draw = TRUE, col = NULL)
 }
 \arguments{
 \item{E}{The endowment.}
@@ -12,10 +12,13 @@ allrules(E, d, draw = TRUE)
 \item{d}{The vector of claims.}
 
 \item{draw}{A logical value.}
+
+\item{col}{The colours (useful only if draw=TRUE). If col=NULL then the sequence of default colours is:
+c("red", "blue", "green", "yellow", "pink", "coral4", "darkgray", "burlywood3", "black", "darkorange", "darkviolet").}
 }
 \value{
-A data-frame with the awards vectors selected by the main division rules. If draw = TRUE,
-a bar chart for each claimant representing the amounts that the claimant receives.
+A data-frame with the awards vectors selected by the main division rules. If draw = TRUE, it
+displays a mosaic plot representing the data-frame.
 }
 \description{
 This function returns the awards vectors selected, for a given claims problem, by the rules:  AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, and Talmud.
@@ -41,7 +44,7 @@ d=c(2,4,7,8)
 allrules(E,d)
 }
 \references{
-Mirás Calvo, M.A., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2020). The core-center rule for the bankruptcy problem. Working paper 2020-02, ECOBAS.
+Mirás Calvo, M.Á., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2022). The average-of-awards rule for claims problems. Soc Choice Welf. \doi{10.1007/s00355-022-01414-6}
 
 Thomson, W. (2019). How to divide when there isn't enough. From Aristotle, the Talmud, and Maimonides to the axiomatics of resource allocation. Cambridge University Press.
 }

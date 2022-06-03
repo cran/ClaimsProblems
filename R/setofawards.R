@@ -1,12 +1,14 @@
 #' @title Set of awards vectors for a claims problem
-#' @description This function plots the set of awards vectors for a claims problem with 2, 3, or 4 claimants and returns its vertices.
+#' @description This function plots the set of awards vectors for a claims problem with 2, 3, or 4 claimants and returns its vertices for any problem.
 #' @param E The endowment.
 #' @param d The vector of claims.
 #' @param draw A logical value.
-#' @param col The color.
-#' @return The vertices of the set of awards vectors for a claims problem with 2, 3, or 4 claimants. For two-claimant and three-claimant problems, if draw = TRUE it plots the set of awards vectors.
+#' @param col The colour.
+#' @return The vertices of the set of awards vectors for any claims problem.
+#' For two-claimant and three-claimant problems, if draw = TRUE it plots the set of awards vectors.
 #' For a four-claimant problem, if draw = TRUE, it plots the projection of the set of awards vector over the euclidean space of the first three coordinates.
-#' The default colors (col = NULL) are: red for two-claimant problems, beige for three-claimant problems, and white for four-claimant problems.
+#' For a claims problem with more than four claimants, it only displays the vertices of the set of awards.
+#' The default colours (col = NULL) are: red for two-claimant problems, beige for three-claimant problems, and white for four-claimant problems.
 #' @details Let \eqn{E\ge 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{d} the vector of claims
 #' with \eqn{d\ge 0} and such that \eqn{\sum_{i=1}^{n} d_i\ge E,\;}{} the sum of claims exceeds the endowment.
 #'
@@ -55,6 +57,7 @@
 #' @importFrom rgl view3d
 #' @importFrom rgl points3d
 #' @importFrom geometry convhulln
+#' @importFrom pracma perms
 #' @export
 setofawards=function(E,d,draw=TRUE,col=NULL){
   ########################################
@@ -80,32 +83,32 @@ setofawards=function(E,d,draw=TRUE,col=NULL){
     #The extreme points of the set of awards (no repeated points)
     V=unique(V)
     if (draw==TRUE){
-        #If the set of awards is a line segment
-        #The axis are determined by the minimal rights
-        plot(m[1],
-             m[2],
-             type="n",
-             xlim=c(m[1],min(E,d[1])*1.2),
-             ylim=c(m[2],min(E,d[2])),
-             xlab=expression("x"[1]),
-             ylab=expression("x"[2]),
-             main=c("Set of awards")
-             )
+      #If the set of awards is a line segment
+      #The axis are determined by the minimal rights
+      plot(m[1],
+           m[2],
+           type="n",
+           xlim=c(m[1],min(E,d[1])*1.2),
+           ylim=c(m[2],min(E,d[2])),
+           xlab=expression("x"[1]),
+           ylab=expression("x"[2]),
+           main=c("Set of awards")
+      )
       subtitle=paste("E=",toString(E),"; d=(",toString(d),")",sep="")
       mtext(subtitle,side=3,line=0.5,cex=0.7)
       grid()
-        lines(c(m[1],E-m[2]),c(m[2],m[2]))
-        lines(c(m[1],m[1]),c(E-m[1],m[2]))
-        # Default color for the set fo awards vector: RED
-        if (is.null(col)){col="red"}
-        lines(t(V[,1]),t(V[,2]),col=col)
+      lines(c(m[1],E-m[2]),c(m[2],m[2]))
+      lines(c(m[1],m[1]),c(E-m[1],m[2]))
+      # Default color for the set fo awards vector: RED
+      if (is.null(col)){col="red"}
+      lines(t(V[,1]),t(V[,2]),col=col)
     }
     return(V)
   }
-    #
-    #
- ####### CASE n=3
- else if(n==3){
+  #
+  #
+  ####### CASE n=3
+  else if(n==3){
     m=c(max(0,E-d[2]-d[3]),max(0,E-d[1]-d[3]),max(0,E-d[1]-d[2]))
     #The coalitional game
     v12=max(0,E-d[3])
@@ -120,7 +123,7 @@ setofawards=function(E,d,draw=TRUE,col=NULL){
                E-v23,m[2],v23-m[2]),
              ncol=3,
              byrow=T
-             )
+    )
     V=unique(V)
     if (draw==TRUE){
       # The minimal rights
@@ -151,14 +154,14 @@ setofawards=function(E,d,draw=TRUE,col=NULL){
       if(dim(V)[1]==2){
         # Default color for the set fo awards vector: RED
         if (is.null(col)){col="red"}
-          lines(t(vertP[,1]),t(vertP[,2]),col=col,lwd=3)
+        lines(t(vertP[,1]),t(vertP[,2]),col=col,lwd=3)
       }else{
         # Default color for the set fo awards vector: BEIGE
         if (is.null(col)){col="beige"}
-            polygon((vertP),col=col)
+        polygon((vertP),col=col)
       }
     }
-  return(V)
+    return(V)
   }
   #
   #
@@ -204,9 +207,9 @@ setofawards=function(E,d,draw=TRUE,col=NULL){
     V=WP[,1:3]
     V=unique(V);
     if (draw==TRUE){
-    par3d(windowRect = c(100,100,900,900),zoom=2)
-    um=matrix(c(-0.862371,0.5039079,-0.04891979,0,-0.1309225,-0.1286247,0.98301315,0,0.4890557,0.8541268,0.17689507,0,0,0,0,1),ncol=4,byrow=T)
-    view3d(userMatrix=um)
+      par3d(windowRect = c(100,100,900,900),zoom=2)
+      um=matrix(c(-0.862371,0.5039079,-0.04891979,0,-0.1309225,-0.1286247,0.98301315,0,0.4890557,0.8541268,0.17689507,0,0,0,0,1),ncol=4,byrow=T)
+      view3d(userMatrix=um)
       # The faces of the set of awards
       # We used the face-game notation
       #
@@ -252,25 +255,25 @@ setofawards=function(E,d,draw=TRUE,col=NULL){
              lwd=1,
              main=paste("Set of awards vectors for ","E=",toString(E),", d=(",toString(d),")",sep=""),
              box=F)
-# The set of awards is a line segment
+      # The set of awards is a line segment
       if(dim(V)[1]==2){
         # Default color for the set fo awards vector: RED
         if (is.null(col)){col="red"}
-            lines3d(t(V[,1]),t(V[,2]),t(V[,3]),col=col,lwd=5)
+        lines3d(t(V[,1]),t(V[,2]),t(V[,3]),col=col,lwd=5)
         grid3d(c("x-+", "y-+", "z-+"))
-# The set of awards has dimension 2 or 3
+        # The set of awards has dimension 2 or 3
       }else{
         if(sum(WP[,1])==0|sum(WP[,2])==0|sum(WP[,3])==0|sum(WP[,4])==0){
           # Default color for the set fo awards vector: RED
           if (is.null(col)){col="red"}
-              points3d(t(V[,1]),t(V[,2]),t(V[,3]),col=col)
-              lines3d(F234,col=col,lwd=3)
-              lines3d(F1,col=col,lwd=3)
-              lines3d(F134,col=col,lwd=3)
-              lines3d(F2,col=col,lwd=3)
-              lines3d(F124,col=col,lwd=3)
-              lines3d(F3,col=col,lwd=3)
-              #
+          points3d(t(V[,1]),t(V[,2]),t(V[,3]),col=col)
+          lines3d(F234,col=col,lwd=3)
+          lines3d(F1,col=col,lwd=3)
+          lines3d(F134,col=col,lwd=3)
+          lines3d(F2,col=col,lwd=3)
+          lines3d(F124,col=col,lwd=3)
+          lines3d(F3,col=col,lwd=3)
+          #
           grid3d(c("x-+", "y-+", "z-+"))
         }else{
           points3d(t(V[,1]),t(V[,2]),t(V[,3]),col="black")
@@ -288,7 +291,26 @@ setofawards=function(E,d,draw=TRUE,col=NULL){
       }
     }
     return(unique(WP))
-      }
+  }
   else{
-    stop("This claims problem has more than four claimants.")}
+    if(draw==TRUE){message("The set of awards can not be drawed for problems with more than 4 claimants.")}
+    f=factorial(n)
+    WP=matrix(0,f,n);
+    Perms=perms(c(1:n))
+
+    for (k in 1:f){
+      P=Perms[k,]
+      w=rep(0,n)
+      for (ii in P){
+        pos=which(P==ii)
+        if (pos==1){
+          w[ii]=min(E,d[ii])}else{
+            if(sum(w)+min(E,d[ii])>E){
+            w[ii]=max(0,E-sum(w))}else{
+              w[ii]=min(E,d[ii])
+            }
+          }
+      }
+      WP[k,]=w}
+    return(unique(WP))}
 }

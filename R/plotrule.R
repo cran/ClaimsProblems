@@ -5,7 +5,7 @@
 #' @param awards An awards vector.
 #' @param set A logical value.
 #' @param Rule A rule: AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, Talmud.
-#' @param col The color.
+#' @param col The colour.
 #' @return If set = TRUE, the function creates a new figure plotting both the set of awards vectors for the claims problem and the given awards vector.
 #' Otherwise, it just adds to the current picture the point representing the given awards vector. The function only plots one awards vector at a time.
 #'

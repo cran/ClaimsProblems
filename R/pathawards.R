@@ -1,9 +1,9 @@
 #' @title The path of awards for two claimants
-#' @description This function returns the graphical representation of the path of awards of a rule for a claims vector and a pair of claimants.
+#' @description This function returns the graphical representation of the path of awards of any rule for a claims vector and a pair of claimants.
 #' @param d The vector of claims.
-#' @param claimants The two claimants.
+#' @param claimants Two claimants.
 #' @param Rule The rule: AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, Talmud.
-#' @param col The color.
+#' @param col The colour.
 #' @param points The number of values of the endowment to draw the path.
 #' @return The graphical representation of the path of awards of a rule for the given claims and a pair of claimants.
 #' @details Let \eqn{d\in \mathcal{R}^n}{d}, with \eqn{d\ge 0}, be a vector of claims and

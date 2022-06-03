@@ -9,11 +9,11 @@ pathawards3(d, claimants, Rule, col = "red", points = 300)
 \arguments{
 \item{d}{The vector of claims.}
 
-\item{claimants}{The three claimants.}
+\item{claimants}{Three claimants.}
 
 \item{Rule}{The rule: AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, Talmud.}
 
-\item{col}{The color of the path, by default, col="red".}
+\item{col}{The colour of the path, by default, col="red".}
 
 \item{points}{The number of values of the endowment to draw the path.}
 }
@@ -21,7 +21,7 @@ pathawards3(d, claimants, Rule, col = "red", points = 300)
 The graphical representation of the path of awards of a rule for the given claims and three claimants.
 }
 \description{
-This function returns the graphical representation of the path of awards of a rule for a claims vector and three claimants.
+This function returns the graphical representation of the path of awards of any rule for a claims vector and three claimants.
 }
 \details{
 Let \eqn{d\in \mathcal{R}^n}{d}, with \eqn{d\ge 0}, be a vector of claims and

@@ -3,9 +3,9 @@
 #' @param E The endowment.
 #' @param d The vector of claims
 #' @param Rules The rules: AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, Talmud.
-#' @param col The colors. If col=NULL then the sequence of default colors is:
+#' @param col The colours. If col=NULL then the sequence of default colours is:
 #' c("red", "blue", "green", "yellow", "pink", "coral4", "darkgray", "burlywood3", "black", "darkorange", "darkviolet").
-#' @param legend A logical value. The color legend is shown if legend=TRUE.
+#' @param legend A logical value. The colour legend is shown if legend=TRUE.
 #' @return This function represents the claims vector and the awards vector assigned by several rules as vertical segments.
 #' @details Let \eqn{E\ge 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{%
 #' d} the vector of claims with \eqn{d\ge 0} and such that \eqn{\sum_{i=1}^{n} d_i\ge E,\ }{}

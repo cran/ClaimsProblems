@@ -17,7 +17,7 @@ plotrule(E, d, Rule = NULL, awards = NULL, set = TRUE, col = "blue")
 
 \item{set}{A logical value.}
 
-\item{col}{The color.}
+\item{col}{The colour.}
 }
 \value{
 If set = TRUE, the function creates a new figure plotting both the set of awards vectors for the claims problem and the given awards vector.

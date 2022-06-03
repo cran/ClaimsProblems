@@ -44,7 +44,7 @@ AA(E,d)
 \references{
 Aumann, R. and Maschler, M., (1985). Game theoretic analysis of a bankruptcy problem from the Talmud. J. Econ. Theory 36, 195–213.
 
-Mirás Calvo, M. A., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez, E. (2021).  Analyzing rules that extend the concede-and-divide principle. Preprint.
+Mirás Calvo, M. Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez, E. (2021).  Analyzing rules that extend the concede-and-divide principle. Preprint.
 
 Thomson, W. (2019). How to divide when there isn't enough. From Aristotle, the Talmud, and Maimonides to the axiomatics of resource allocation. Cambridge University Press.
 }

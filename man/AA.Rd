@@ -48,9 +48,9 @@ d-AA(D-E,d)
 \references{
 Gonzalez-Díaz, J. and Sánchez-Rodríguez, E. (2007). A natural selection from the core of a TU game: the core-center. International Journal of Game Theory, 36(1), 27-46.
 
-Mirás Calvo, M.A., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2020). The core-center rule for the bankruptcy problem. Working paper 2020-02, ECOBAS.
+Mirás Calvo, M.Á., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2022). The average-of-awards rule for claims problems. Soc Choice Welf. \doi{10.1007/s00355-022-01414-6}
 
-Mirás Calvo, M.A., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2020). An algorithm to compute the core-center rule of a claims problem with an application to
+Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2020). An algorithm to compute the core-center rule of a claims problem with an application to
 the allocation of CO2 emissions. Working paper.
 }
 \seealso{

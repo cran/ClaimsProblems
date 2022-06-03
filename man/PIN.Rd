@@ -28,10 +28,10 @@ the problem \eqn{(E, d/2)} if the endowment is less or equal than the half-sum o
 Otherwise it assigns to each claimant \eqn{i} half of the claim, \eqn{d_i/2}{di/2} and,
 then, it distributes the remainder with the CEA rule. Therefore:
 
-If \eqn{E \le \frac{D}{2}}{E\le D/2} then:
+If \eqn{E \le \frac{D}{2}}{E\le D/2} then,
 \deqn{PIN(E,d)  = CEA(E,d/2).}{PIN(E,d)=CEA(E,d/2).}
 
-If \eqn{E \ge \frac{D}{2}}{E\ge D/2} then:
+If \eqn{E \ge \frac{D}{2}}{E\ge D/2} then,
 \deqn{PIN(E,d)=d/2+CEA(E-D/2,d/2).}{PIN(E,d)=d/2+CEA(E-D/2,d/2).}
 }
 \examples{

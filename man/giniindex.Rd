@@ -17,7 +17,7 @@ giniindex(E, d, Rule)
 The Gini index of a rule for a claims problem and the Gini index of the vector of claims.
 }
 \description{
-This function returns the Gini index of a rule for a claims problem.
+This function returns the Gini index of any rule for a claims problem.
 }
 \details{
 Let \eqn{E> 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{d} the vector of claims
@@ -45,9 +45,8 @@ giniindex(E,d,PRO)
 \references{
 Ceriani, L. and Verme, P. (2012). The origins of the Gini index: extracts from Variabilitá e Mutabilitá (1912) by Corrado Gini. The Journal of Economic Inequality, 10(3), 421-443.
 
-Mirás Calvo, M.A., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2021). Deviation from proportionality and Lorenz-dominance between
-the average of awards and the standard rules for claims problems. Working paper 2021-01, ECOBAS.
+Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez, E. (2022). Deviation from proportionality and Lorenz-domination for claims problems. Rev Econ Design. \doi{10.1007/s10058-022-00300-y}
 }
 \seealso{
-\link{lorenzcurve}, \link{cumulativecurve}, \link{proportionalityindex}, \link{indexpath}, \link{lorenzdominance}.
+\link{lorenzcurve}, \link{cumawardscurve}, \link{deviationindex}, \link{indexgpath}, \link{lorenzdominance}.
 }

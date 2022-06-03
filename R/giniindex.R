@@ -1,5 +1,5 @@
 #' @title Gini index
-#' @description  This function returns the Gini index of a rule for a claims problem.
+#' @description  This function returns the Gini index of any rule for a claims problem.
 #' @param E The endowment.
 #' @param d The vector of claims.
 #' @param Rule A rule: AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, Talmud.
@@ -17,7 +17,7 @@
 #' \eqn{Y_k=\frac{1}{E} \sum_{j=0}^{k} R_j(E,d)}{Yk=(R0+\dots+Rk)/E}. Then
 #' \deqn{G(R,E,d)=1-\sum_{k=1}^{n}(X_{k}-X_{k-1})(Y_{k}+Y_{k-1}).}{G(R,E,d)=1-\sum (Xk-X(k-1))(Yk+Y(k-1) where the sum goes from k=1 to n.}
 #' In general \eqn{0\le G(R,E,d) \le 1}.
-#' @seealso \link{lorenzcurve}, \link{cumulativecurve}, \link{proportionalityindex}, \link{indexpath}, \link{lorenzdominance}.
+#' @seealso \link{lorenzcurve}, \link{cumawardscurve}, \link{deviationindex}, \link{indexgpath}, \link{lorenzdominance}.
 #' @examples
 #' E=10
 #' d=c(2,4,7,8)
@@ -26,8 +26,7 @@
 #' # The Gini index of the proportional awards coincides with the Gini index of the vector of claims
 #' giniindex(E,d,PRO)
 #' @references  Ceriani, L. and Verme, P. (2012). The origins of the Gini index: extracts from Variabilitá e Mutabilitá (1912) by Corrado Gini. The Journal of Economic Inequality, 10(3), 421-443.
-#' @references Mirás Calvo, M.A., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2021). Deviation from proportionality and Lorenz-dominance between
-#' the average of awards and the standard rules for claims problems. Working paper 2021-01, ECOBAS.
+#' @references Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez, E. (2022). Deviation from proportionality and Lorenz-domination for claims problems. Rev Econ Design. \doi{10.1007/s10058-022-00300-y}
 #' @export
 
 giniindex = function(E, d, Rule) {

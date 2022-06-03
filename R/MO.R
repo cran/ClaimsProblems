@@ -30,7 +30,7 @@
 #' @seealso \link{allrules}, \link{CD}.
 #' @examples
 #' E=10
-#' d=c(2,4,7,9)
+#' d=c(2,4,7,8)
 #' MO(E,d)
 #' @references Mirás Calvo, M.A., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2021). The adjusted proportional and the minimal overlap rules restricted to the lower-half, higher-half, and middle domains. Working paper 2021-02, ECOBAS.
 #' @references O'Neill, B. (1982). A problem of rights arbitration from the Talmud. Math. Social Sci. 2, 345-371.

@@ -1,11 +1,11 @@
 #' @title Schedules of awards of a rule
-#' @description This function returns the graphical representation of the schedules of awards of a rule for a claims vector.
+#' @description This function returns the graphical representation of the schedules of awards of any rule for a claims vector.
 #' @param d A vector of claims.
 #' @param Rule The rule: AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, or Talmud.
 #' @param claimants A subset of claimants.
-#' @param col The colors. If col = NULL then the sequence of default colors is chosen randomly.
+#' @param col The colours. If col = NULL then the sequence of default colours is chosen randomly.
 #' @param points The number of values of the endowment to draw the path.
-#' @param legend A logical value. The color legend is shown if legend = TRUE.
+#' @param legend A logical value. The colour legend is shown if legend = TRUE.
 #' @return The graphical representation of the schedules of awards of a rule for a claims vector and a group of claimants.
 #' @details  Let \eqn{d\in \mathcal{R}^n}{d}, with \eqn{d\ge 0}, be a vector of claims and
 #'  denote  \eqn{D=\sum_{i=1}^{n} d_i}{D=\sum di} the sum of claims.

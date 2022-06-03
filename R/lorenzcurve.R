@@ -1,11 +1,11 @@
 #' @title The Lorenz curve
-#' @description This function returns the Lorenz curve of a rule for a claims problem.
+#' @description This function returns the Lorenz curve of any rule for a claims problem.
 #' @param E The endowment.
 #' @param d The vector of claims.
 #' @param Rules The rules: AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, Talmud.
-#' @param col The colors. If col=NULL then the sequence of default colors is:
+#' @param col The colours. If col=NULL then the sequence of default colors is:
 #' c("red", "blue", "green", "yellow", "pink", "coral4", "darkgray", "burlywood3", "black", "darkorange", "darkviolet").
-#' @param legend A logical value. The color legend is shown if legend=TRUE.
+#' @param legend A logical value. The colour legend is shown if legend=TRUE.
 #' @return The graphical representation of the Lorenz curve of a rule (or several rules) for a claims problem.
 #' @details Let \eqn{E> 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{d} the vector of claims
 #' with \eqn{d\ge 0} and such that the sum of claims \eqn{D=\sum_{i=1}^{n} d_i\ge E}{D=\sum di} exceeds the endowment.
@@ -19,7 +19,7 @@
 #' (0,0) , (1/n,R1(E,d)/E) , (2/n , (R1(E,d)+R2(E,d))/E ,\dots , (1,1)}
 #' Basically, it represents the cumulative percentage of the endowment assigned by the rule to each cumulative percentage of claimants.
 #'
-#' @seealso \link{giniindex}, \link{cumulativecurve}, \link{proportionalityindex}, \link{indexpath}, \link{lorenzdominance}.
+#' @seealso \link{giniindex}, \link{cumawardscurve}, \link{deviationindex}, \link{indexgpath}, \link{lorenzdominance}.
 #' @examples
 #' E=10
 #' d=c(2,4,7,8)
@@ -27,8 +27,7 @@
 #' col=c("red","blue","green","yellow","pink")
 #' lorenzcurve(E,d,Rules,col)
 #' @references  Lorenz, M. O. (1905). Methods of measuring the concentration of wealth. Publications of the American statistical association, 9(70), 209-219.
-#' @references Mirás Calvo, M.A., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2021). Deviation from proportionality and Lorenz-dominance between
-#' the average of awards and the standard rules for claims problems. Working paper 2021-01, ECOBAS.
+#' @references Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez, E. (2022). Deviation from proportionality and Lorenz-domination for claims problems. Rev Econ Design. \doi{10.1007/s10058-022-00300-y}
 #' @importFrom graphics lines
 #' @importFrom graphics legend
 #' @importFrom graphics grid

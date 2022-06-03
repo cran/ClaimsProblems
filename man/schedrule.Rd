@@ -13,17 +13,17 @@ schedrule(d, claimants, Rule, col = NULL, points = 201, legend = TRUE)
 
 \item{Rule}{The rule: AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, or Talmud.}
 
-\item{col}{The colors. If col = NULL then the sequence of default colors is chosen randomly.}
+\item{col}{The colours. If col = NULL then the sequence of default colours is chosen randomly.}
 
 \item{points}{The number of values of the endowment to draw the path.}
 
-\item{legend}{A logical value. The color legend is shown if legend = TRUE.}
+\item{legend}{A logical value. The colour legend is shown if legend = TRUE.}
 }
 \value{
 The graphical representation of the schedules of awards of a rule for a claims vector and a group of claimants.
 }
 \description{
-This function returns the graphical representation of the schedules of awards of a rule for a claims vector.
+This function returns the graphical representation of the schedules of awards of any rule for a claims vector.
 }
 \details{
 Let \eqn{d\in \mathcal{R}^n}{d}, with \eqn{d\ge 0}, be a vector of claims and

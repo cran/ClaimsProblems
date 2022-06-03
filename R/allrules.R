@@ -3,8 +3,10 @@
 #' @param E The endowment.
 #' @param d The vector of claims.
 #' @param draw A logical value.
-#' @return A data-frame with the awards vectors selected by the main division rules. If draw = TRUE,
-#' a bar chart for each claimant representing the amounts that the claimant receives.
+#' @param col The colours (useful only if draw=TRUE). If col=NULL then the sequence of default colours is:
+#' c("red", "blue", "green", "yellow", "pink", "coral4", "darkgray", "burlywood3", "black", "darkorange", "darkviolet").
+#' @return A data-frame with the awards vectors selected by the main division rules. If draw = TRUE, it
+#' displays a mosaic plot representing the data-frame.
 #' @details  Let \eqn{E\ge 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{%
 #' d} the vector of claims with \eqn{d\ge 0} and such that \eqn{\sum_{i=1}^{n} d_i\ge E,\ }{}
 #' the sum of claims exceeds the endowment.
@@ -24,13 +26,12 @@
 #' E=10
 #' d=c(2,4,7,8)
 #' allrules(E,d)
-#' @references Mirás Calvo, M.A., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2020). The core-center rule for the bankruptcy problem. Working paper 2020-02, ECOBAS.
+#' @references Mirás Calvo, M.Á., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2022). The average-of-awards rule for claims problems. Soc Choice Welf. \doi{10.1007/s00355-022-01414-6}
 #' @references Thomson, W. (2019). How to divide when there isn't enough. From Aristotle, the Talmud, and Maimonides to the axiomatics of resource allocation. Cambridge University Press.
-#' @importFrom graphics par
-#' @importFrom graphics barplot
+#' @importFrom graphics mosaicplot
 #' @export
 
-allrules = function(E, d, draw = TRUE) {
+allrules = function(E, d, draw = TRUE, col = NULL) {
   n = length(d) #The number of claimants
   D = sum(d) # The sum of claims
   ########################################
@@ -61,47 +62,12 @@ allrules = function(E, d, draw = TRUE) {
   }
   colnames(table) = c(claimants)
   if (draw == TRUE){
-  ###########  THE BAR GRAPH ################
-  if(n==2){
-    par(mfrow = c(2, 1))
-    for (i in 1:n) {
-      barplot(table[, i],
-              names.arg = names,
-              main = paste("Claimant", i))
+  ###########  THE MOSAIC GRAPH ################
+    if (is.null(col)) {
+      col=c("red","blue","green","yellow","pink","coral4","darkgray","burlywood3","black","darkorange","darkviolet")
     }
-  } else if(n==3|n==4){
-    par(mfrow = c(2, 2))
-    for (i in 1:n) {
-      barplot(table[, i],
-              names.arg = names,
-              main = paste("Claimant", i))
-    }
-  } else if(n==5|n==6){
-    par(mfrow = c(3, 2))
-    for (i in 1:n) {
-      barplot(table[, i],
-              names.arg = names,
-              main = paste("Claimant", i))
-    }
-  } else if(n==7|n==8|n==9){
-    par(mfrow = c(3,3))
-    for (i in 1:n) {
-      barplot(table[, i],
-              names.arg = names,
-              main = paste("Claimant", i))
-    }
-  } else {
-    par(mar = rep(3, 4))
-    par(mfrow = c(3, 4))
-
-    for (i in 1:n) {
-      barplot(table[, i],
-              names.arg = names,
-              main = paste("Claimant", i))
-                  }
-        }
+  mosaicplot(table,main="",color=col)
   }
-  on.exit(par(mfrow = c(1, 1)))
 
   return(table)
 }
