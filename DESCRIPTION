@@ -1,7 +1,7 @@
 Package: ClaimsProblems
 Type: Package
 Title: Analysis of Conflicting Claims
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: c(
       person("Iago","Núñez Lugilde",role=c("aut","cre"), email="iago.nunez.lugilde@uvigo.es",comment="SIDOR. Universidade de Vigo. Departamento de Estatística e Investigación Operativa. Spain"),
 			person("Miguel Ángel","Mirás Calvo",role=c("aut"), comment="RGEAF. Universidade de Vigo. Departamento de Matemáticas. Spain"),
@@ -15,7 +15,7 @@ Encoding: UTF-8
 Imports: graphics, rgl, geometry, grDevices, stats, pracma
 RoxygenNote: 7.1.2
 NeedsCompilation: no
-Packaged: 2022-06-01 11:41:30 UTC; iagol
+Packaged: 2023-01-12 10:05:59 UTC; iagol
 Author: Iago Núñez Lugilde [aut, cre] (SIDOR. Universidade de Vigo.
     Departamento de Estatística e Investigación Operativa. Spain),
   Miguel Ángel Mirás Calvo [aut] (RGEAF. Universidade de Vigo.
@@ -26,4 +26,4 @@ Author: Iago Núñez Lugilde [aut, cre] (SIDOR. Universidade de Vigo.
     SIDOR. Departamento de Estatística e Investigación Operativa.
     Universidade de Vigo. Spain)
 Repository: CRAN
-Date/Publication: 2022-06-03 08:30:14 UTC
+Date/Publication: 2023-01-12 11:30:08 UTC

@@ -52,7 +52,7 @@
 #' @importFrom rgl lines3d
 #' @importFrom rgl plot3d
 #' @importFrom rgl grid3d
-#' @importFrom rgl rgl.triangles
+#' @importFrom rgl triangles3d
 #' @importFrom rgl par3d
 #' @importFrom rgl view3d
 #' @importFrom rgl points3d
@@ -285,7 +285,7 @@ setofawards=function(E,d,draw=TRUE,col=NULL){
           lines3d(F3,col="black",lwd=3)
           if(is.null(col)==FALSE){
             ts.surf1 <- t(convhulln(V))
-            convex1 <-  rgl.triangles(V[ts.surf1,1],V[ts.surf1,2],V[ts.surf1,3],col=col,alpha=0.2)}
+            convex1 <-  triangles3d(V[ts.surf1,1],V[ts.surf1,2],V[ts.surf1,3],col=col,alpha=0.2)}
           grid3d(c("x-+", "y-+", "z-+"))
         }
       }

@@ -1,5 +1,5 @@
-c26440f980ef3f7bb94f497945d5c922 *DESCRIPTION
-f3c53b9c28baf660fafe107f6c391fa8 *NAMESPACE
+c9ffc22559ed41799d21590fea599cea *DESCRIPTION
+d34baad94ce518801806cfd166c48a96 *NAMESPACE
 9c67447cac607eac21436707e9150c06 *R/AA.R
 d65ed454ad1c17cf2973a7bc9e90a8a7 *R/APRO.R
 9a1f5aaee673a9c54f250da1dae31680 *R/CD.R
@@ -30,9 +30,9 @@ a4fc445997e93b905b0750505a0cf247 *R/plotrule.R
 a273ec61ae6c64ebe8238cb97a4c27bf *R/proportionalityindex.R
 226a4a2f2e1978253f5ed7e1fe0cc53c *R/schedrule.R
 c3c61113b7d082251fe33b05d37c8156 *R/schedrules.R
-262a3f47d2b304762c33feb26d9f24bd *R/setofawards.R
+6c629693bce1dc7420cf4d79fc3db8f8 *R/setofawards.R
 945f656726ac3d90ebf11ed91b57e590 *R/verticalruleplot.R
-683c16ea27fe55c4d287ad1182133563 *build/partial.rdb
+5a3cef2396c7b331709348f54c4a707c *build/partial.rdb
 2b3bba0983df99dc4dde942e3ed1253e *man/AA.Rd
 645b697f95a03c1458f7973ce1c528c2 *man/APRO.Rd
 96db2156d59cd7ad114daf782a5cfc5a *man/CD.Rd
