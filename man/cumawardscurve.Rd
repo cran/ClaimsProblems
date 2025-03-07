@@ -11,14 +11,14 @@ cumawardscurve(E, d, Rule = PRO, Rules, col = NULL, legend = TRUE)
 
 \item{d}{The vector of claims.}
 
-\item{Rule}{Principal Rule: AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, Talmud. By default, Rule = PRO.}
+\item{Rule}{Principal Rule: AA, APRO, CE, CEA, CEL, AV, DT, MO, PIN, PRO, RA, Talmud, RTalmud. By default, \code{Rule = PRO}.}
 
-\item{Rules}{The rules: AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, Talmud.}
+\item{Rules}{The rules: AA, APRO, CE, CEA, CEL, AV, DT, MO, PIN, PRO, RA, Talmud, RTalmud.}
 
-\item{col}{The colours. If col = NULL then the sequence of default colours is:
-c("red", "blue", "green", "yellow", "pink", "coral4", "darkgray", "burlywood3", "black", "darkorange", "darkviolet").}
+\item{col}{The colours. If \code{col = NULL} then the sequence of default colours is:
+c("red", "blue", "green", "yellow", "pink","orange", "coral4", "darkgray", "burlywood3", "black", "darkorange", "darkviolet").}
 
-\item{legend}{A logical value. The colour legend is shown if legend = TRUE.}
+\item{legend}{A logical value. The colour legend is shown if \code{legend = TRUE}.}
 }
 \value{
 The graphical representation of the cumulative curves of a rule (or several rules) for a claims problem.
@@ -27,23 +27,20 @@ The graphical representation of the cumulative curves of a rule (or several rule
 The graphical representation of the cumulative curves of a rule (or several rules) with respect to a given rule, for a claims problem.
 }
 \details{
-Let \eqn{E> 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{d} the vector of claims
-with \eqn{d\ge 0} and such that the sum of claims \eqn{D=\sum_{i=1}^{n} d_i\ge E}{D=\sum di} exceeds the endowment.
+Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{E\ge 0} the endowment to be divided and \eqn{d\in \mathbb{R}_+^N} the vector of claims
+such that \eqn{\sum_{i \in N} d_i\ge E}.
 
-Rearrange the claims from small to large, \eqn{0 \le d_1 \le...\le d_n}{%
-0 \le d1 \le...\le dn}. The cumulative curve allows us
-to compare the division recommended by a specific rule \eqn{R} with the division the division recommended by another specific rule \eqn{S}.
+Rearrange the claims from small to large, \eqn{0 \le d_1 \le...\le d_n}.
+The cumulative curve allows us
+to compare the division recommended by a specific rule \eqn{\mathcal{R}} with the division the division recommended by another specific rule \eqn{\mathcal{S}}.
 
-The cumulative awards curve of a rule \eqn{S} with respect of a rule \eqn{R} for the claims problem \eqn{(E,d)} is the polygonal path connecting the \eqn{n+1} points
-\deqn{(0,0), (\frac{R_1}{E},\frac{S_1}{E}),\dots,(\frac{\sum_{i=1}^{n-1}R_i}{E},\frac{\sum_{i=1}^{n-1}S_i}{E}),(1,1).}{%
-(0,0) , (R1/E,S1/E) , ((R1+R2)/E , (S1+S2)/E ,\dots , (1,1).}
+The cumulative awards curve of a rule \eqn{\mathcal{S}} with respect of a rule \eqn{\mathcal{R}} for the claims problem \eqn{(E,d)} is the polygonal path connecting the \eqn{n+1} points
+\deqn{(0,0), \Bigl(\frac{\mathcal{R}_1}{E},\frac{\mathcal{S}_1}{E}\Bigr),\dots,\Bigl(\frac{\sum_{i=1}^{n-1}\mathcal{R}_i}{E},\frac{\sum_{i=1}^{n-1}\mathcal{S}_i}{E}\Bigr),(1,1).}
 
 The cumulative awards curve fully captures the Lorenz ranking of rules:
-if a rule \eqn{R} Lorenz-dominates a rule \eqn{S} then, for each claims problem, the cumulative curve of \eqn{R}
-lies above the cumulative curve of \eqn{S}.
-If \eqn{R = PRO}, the cumulative curve coincides with the cumulative claims-awards curve.
-
-\eqn{cumulativecurve} function of version 0.1.0 returned the cumulative claims-awards curve with respect to the proportional rule.
+if a rule \eqn{\mathcal{R}} Lorenz-dominates a rule \eqn{\mathcal{S}} then, for each claims problem, the cumulative curve of \eqn{\mathcal{R}}
+lies above the cumulative curve of \eqn{\mathcal{S}}.
+If \eqn{\mathcal{R} = \text{PRO}}, the cumulative curve coincides with the cumulative claims-awards curve.
 }
 \examples{
 E=10
@@ -53,10 +50,10 @@ Rules=c(AA,RA,Talmud,CEA,CEL)
 cumawardscurve(E,d,Rule,Rules)
 }
 \references{
-Lorenz, M. O. (1905). Methods of measuring the concentration of wealth. Publications of the American statistical association, 9(70), 209-219.
+Lorenz, M. O. (1905). Methods of measuring the concentration of wealth. Publications of the American statistical association 9(70), 209-219.
 
-Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez, E. (2022). Deviation from proportionality and Lorenz-domination for claims problems. Rev Econ Design. \doi{10.1007/s10058-022-00300-y}
+Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez, E. (2023). Deviation from proportionality and Lorenz-domination for claims problems. Review of Economic Design 27, 439-467.
 }
 \seealso{
-\link{deviationindex}, \link{indexgpath}, \link{lorenzcurve}, \link{giniindex}, \link{lorenzdominance},  \link{allrules}.
+\link{allrules}, \link{deviationindex}, \link{giniindex}, \link{indexgpath}, \link{lorenzcurve}, \link{lorenzdominance}.
 }

@@ -14,34 +14,33 @@ RA(E, d, name = FALSE)
 \item{name}{A logical value.}
 }
 \value{
-The awards vector selected by the RA rule. If name = TRUE, the name of the function (RA) as a character string.
+The awards vector selected by the RA rule. If \code{name = TRUE}, the name of the function (RA) as a character string.
 }
 \description{
 This function returns the awards vector assigned by the random arrival rule (RA) to a claims problem.
 }
 \details{
-Let \eqn{E\ge 0} be the endowment to be divided and let \eqn{d\in \mathcal{R}^n}{d} be the vector of claims
-with \eqn{d\ge 0} and such that \eqn{\sum_{i=1}^{n} d_i\ge E,\ }{} the sum of claims exceeds the endowment.
+Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{E\ge 0} the endowment to be divided and \eqn{d\in \mathbb{R}_+^N} the vector of claims
+such that \eqn{\sum_{i \in N} d_i\ge E}. For each coalition \eqn{S\in 2^N}, \eqn{d(S)=\sum_{j\in S}d_j}.
 
-For each subset \eqn{S} of the set of claimants \eqn{N}, let \eqn{d(S)=\sum_{j\in S}d_j}{d(S)} be the sum of claims of the members of \eqn{S}.
-
-The random arrival rule considers all the possible arrivals of the claimants
+The random arrival rule (RA) considers all the possible arrivals of the claimants
 and applies the principle ``first to arrive, first to be served".
 Then, for each order, the corresponding marginal worth vector assigns to each claimant the minimum of her/his claim
  and what remains of the endowment. The rule averages all the marginal worth vectors  considering all the permutations of the elements of \eqn{N}.
 
-Let \eqn{\Pi^N}{\Pi} denote the set of permutations of the set of claimants \eqn{N} and \eqn{|\Pi^N|}{|\Pi|} its cardinality.
-Given a permutation \eqn{\pi \in \Pi}{\pi} and a claimant \eqn{i\in N}{i} let
-\eqn{\pi_{\le i}}{\pi(\le i)} denote the set of claimants that precede \eqn{i} in the order \eqn{\pi},
-that is, \eqn{\pi_{\le i}=\{ j \in N :\pi(j)<\pi(i) \}}{\pi(\le i)=\{j: \pi(j)<\pi(i)\}}.
+Let \eqn{\Pi^N} denote the set of permutations of the set of claimants \eqn{N} and \eqn{|\Pi^N|} its cardinality.
+Given a permutation \eqn{\pi \in \Pi} and a claimant \eqn{i\in N} let
+\eqn{\pi_{\le i}} be the set of claimants that precede \eqn{i} in the order \eqn{\pi},
+that is, \eqn{\pi_{\le i}=\{ j \in N :\pi(j)<\pi(i) \}}.
 
-The random arrival rule assigns to each \eqn{(E,d)} and each \eqn{i}
-the value:
-\deqn{RA_i(E,d)=\frac{1}{|\Pi^N|}\sum_{\pi\in \Pi^N}\min\{d_i,\max\{ 0,E-d(\pi_{\le i}) \}\}, \  i=1,\dots,n}{%
-RAi(E,d)=1/|\Pi| \sum min\{ di, max\{0,E-d(\pi(\le i))\} \}, where the sum is taken over the set of permutations \Pi.}
+The random arrival rule assigns to each \eqn{(E,d)} and each \eqn{i\in N},
+
+\deqn{\text{RA}_i(E,d)=\frac{1}{|\Pi^N|}\sum_{\pi\in \Pi^N}\min\Bigl\{d_i,\max\{ 0,E-d(\pi_{\le i}) \}\Bigr\}.}
 
 
 The random arrival rule corresponds to the Shapley value of the associated (pessimistic) coalitional game.
+
+This function is programmed following the algorithm of Le Creurer et al. (2022).
 }
 \examples{
 E=10
@@ -52,10 +51,12 @@ D=sum(d)
 d-RA(D-E,d)
 }
 \references{
-O'Neill, B. (1982). A problem of rights arbitration from the Talmud. Math. Social Sci. 2, 345-371.
+Le Creurer, I.J, Mirás Calvo, M. A., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez, E. (2022). On the computation of the Shapley value and the random arrival rule.  Available at \url{https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4293746}.
+
+O’Neill, B. (1982) A problem of rights arbitration from the Talmud. Mathematical Social Sciences 2, 345–371.
 
 Thomson, W. (2019). How to divide when there isn't enough. From Aristotle, the Talmud, and Maimonides to the axiomatics of resource allocation. Cambridge University Press.
 }
 \seealso{
-\link{allrules}, \link{setofawards}, \link{Talmud}, \link{AA}, \link{CD}, \link{APRO}
+\link{AA}, \link{allrules}, \link{APRO}, \link{axioms}, \link{CD}, \link{setofawards}, \link{Talmud}.
 }

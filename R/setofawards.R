@@ -5,33 +5,32 @@
 #' @param draw A logical value.
 #' @param col The colour.
 #' @return The vertices of the set of awards vectors for any claims problem.
-#' For two-claimant and three-claimant problems, if draw = TRUE it plots the set of awards vectors.
-#' For a four-claimant problem, if draw = TRUE, it plots the projection of the set of awards vector over the euclidean space of the first three coordinates.
+#' For two-claimant and three-claimant problems, if \code{draw = TRUE} it plots the set of awards vectors.
+#' For a four-claimant problem, if \code{draw = TRUE}, it plots the projection of the set of awards vector over the euclidean space of the first three coordinates.
 #' For a claims problem with more than four claimants, it only displays the vertices of the set of awards.
-#' The default colours (col = NULL) are: red for two-claimant problems, beige for three-claimant problems, and white for four-claimant problems.
-#' @details Let \eqn{E\ge 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{d} the vector of claims
-#' with \eqn{d\ge 0} and such that \eqn{\sum_{i=1}^{n} d_i\ge E,\;}{} the sum of claims exceeds the endowment.
+#' The default colours (\code{col = NULL}) are: red for two-claimant problems, beige for three-claimant problems, and white for four-claimant problems.
+#' @details Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{E\ge 0} the endowment to be divided and \eqn{d\in \mathbb{R}_+^N} the vector of claims
+#' such that \eqn{\sum_{i \in N} d_i\ge E}.
 #'
-#' A vector \eqn{x=(x_1,\dots,x_n)}{x=(x1,...,xn)} is an awards vector for the claims problem \eqn{(E,d)} if \eqn{0\le x \le d}
-#' and satisfies the balance requirement, that is, \eqn{\sum_{i=1}^{n}x_i=E}{x1+\dots+xn=E} the sum of its coordinates is equal to \eqn{E}.
+#' A vector \eqn{x=(x_1,\dots,x_n)} is an awards vector for the claims problem \eqn{(E,d)} if \eqn{0\le x \le d}
+#' and satisfies the balance requirement, that is, \eqn{\sum_{i=1}^{n}x_i=E}.
 #' Let \eqn{X(E,d)} be the set of awards vectors for the problem \eqn{(E,d)}.
 #'
 #' For each subset \eqn{S} of the set of claimants \eqn{N}, let \eqn{d(S)=\sum_{j\in S}d_j}{d(S)} be the sum of claims of the members of \eqn{S}
 #'  and let \eqn{N\backslash S}{N-S} be the complementary coalition of \eqn{S}.
 #'
-#' The minimal right of claimant \eqn{i} in \eqn{(E,d)} is whatever is left after every other claimant has received his claim, or 0 if that is not possible:
-#' \deqn{m_i(E,d)=\max\{0,E-d(N\backslash\{i\})\},\ i=1,\dots,n.}{mi = max\{ 0 , E-d(N-\{i\}) \}, i=1,\dots,n.}
-#' Let \eqn{m(E,d)=(m_1(E,d),\dots,m_n(E,d))}{m(E,d)=(m1,\dots,mn)} be the vector of minimal rights.
+#'The minimal right of claimant \eqn{i\in N} in \eqn{(E,d)} is whatever is left after every other claimant has received his claim, or 0 if that is not possible:
+#' \deqn{m_i(E,d)=\max\{0,E-d(N\backslash\{i\})\},\ i=1,\dots,n.}
+#' Let \eqn{m(E,d)=\Bigl(m_1(E,d),\dots,m_n(E,d)\Bigr)} be the vector of minimal rights.
 #'
-#' The truncated claim of claimant \eqn{i} in \eqn{(E,d)} is the minimum of the claim and the endowment:
-#' \deqn{t_i(E,d)=\min\{d_i,E\},\ i=1,\dots,n.}{ti = min\{di,E\}, i=1,\dots,n}
-#' Let \eqn{t(E,d)=(t_1(E,d),\dots,t_n(E,d))}{t(E,d)=(t1,\dots,tn)} be the vector of truncated claims.
+#' The truncated claim of claimant \eqn{i\in N} in \eqn{(E,d)} is the minimum of the claim and the endowment:
+#' \deqn{t_i(E,d)=\min\{d_i,E\},\ i=1,\dots,n.}
+#' Let \eqn{t(E,d)=\Bigl(t_1(E,d),\dots,t_n(E,d)\Bigr)} be the vector of truncated claims.
 #'
 #' A vector \eqn{x} is efficient if the sum of its coordinates coincides with the endowment. The set of awards is the the set of all efficient vectors bounded by the minimal right and trucated claim vectors.
 #'
 #' The set of awards vectors for the claims problem \eqn{(E,d)} can be given in terms of the minimal rights and truncated claims vectors:
-#' \deqn{X(E,d)=\bigl\{x \in \mathcal{R}^n: \sum_{i=1}^n x_i=E,  m_i(E,d) \le x_i \le t_i(E,d),\ i=1,\dots,n \bigr\}}{%
-#' X(E,d)=\{x=(x1,\dots,xn): m(E,d) \le x \le t(E,d), x1+\dots+xn=E\}.}
+#' \deqn{X(E,d)=\Bigl\{x \in \mathbb{R}^n: x(N)=E,  m(E,d) \le x \le t(E,d)\Bigr\}.}
 #'
 #' The set of awards vectors for a problem coincides with the core of its associated coalitional (pessimistic) game.
 #'
@@ -39,14 +38,14 @@
 #' Then, for each order, the corresponding marginal worth vector assigns to each claimant the minimum of her/his claim
 #'  and what remains of the endowment.
 #'
+#' @references Mirás Calvo, M.A., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2024). On properties of the set of awards vectors for a claims problem. TOP 32, 137-167.
 #' @references Thomson, W. (2019). How to divide when there isn't enough. From Aristotle, the Talmud, and Maimonides to the axiomatics of resource allocation. Cambridge University Press.
-#' @seealso \link{plotrule}, \link{problemdata}, \link{AA}, \link{RA}
+#' @seealso \link{AA}, \link{plotrule}, \link{problemdata}, \link{RA}, \link{volume}.
 #' @examples
 #' E=10
 #' d=c(2,4,7,8)
 #' setofawards(E,d,col="darkgreen")
 #' @importFrom graphics lines
-#' @importFrom graphics points
 #' @importFrom graphics polygon
 #' @importFrom graphics mtext
 #' @importFrom rgl lines3d

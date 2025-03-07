@@ -1,20 +1,20 @@
 #' @title Schedules of awards of a rule
 #' @description This function returns the graphical representation of the schedules of awards of any rule for a claims vector.
 #' @param d A vector of claims.
-#' @param Rule The rule: AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, or Talmud.
+#' @param Rule The rule: AA, APRO, CE, CEA, CEL, AV, DT, MO, PIN, PRO, RA, Talmud, RTalmud.
 #' @param claimants A subset of claimants.
-#' @param col The colours. If col = NULL then the sequence of default colours is chosen randomly.
+#' @param col The colours. If \code{col = NULL} then the sequence of default colours is chosen randomly.
 #' @param points The number of values of the endowment to draw the path.
-#' @param legend A logical value. The colour legend is shown if legend = TRUE.
+#' @param legend A logical value. The colour legend is shown if \code{legend = TRUE}.
 #' @return The graphical representation of the schedules of awards of a rule for a claims vector and a group of claimants.
-#' @details  Let \eqn{d\in \mathcal{R}^n}{d}, with \eqn{d\ge 0}, be a vector of claims and
-#'  denote  \eqn{D=\sum_{i=1}^{n} d_i}{D=\sum di} the sum of claims.
+#' @details Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{d\in \mathbb{R}_+^N} a vector of claims and
+#'  denote by  \eqn{D=\sum_{i\in N} d_i} the sum of the claims.
 #'
-#' The schedules of awards of a rule \eqn{R} for claimant \eqn{i} is the function \eqn{S} that assigns to each \eqn{E\in [0,D]}{0\le E \le D} the  value:
-#' \eqn{S(E)=R_i(E,d)\in \mathcal{R}}{S(E)=Ri(E,d)}.
+#' The schedules of awards of a rule \eqn{\mathcal{R}} for claimant \eqn{i} is the function \eqn{S} that assigns to each \eqn{E\in [0,D]} the  value:
+#' \eqn{S(E)=\mathcal{R}_i(E,d)\in \mathbb{R}}.
 #' Therefore, the schedules of awards of a rule plots each claimants's award as a function of \eqn{E}.
 #'
-#' @seealso \link{schedrules}, \link{pathawards}, \link{pathawards3}, \link{verticalruleplot}
+#' @seealso \link{pathawards}, \link{pathawards3}, \link{schedrules}, \link{verticalruleplot}.
 #' @examples
 #' d=c(2,4,7,8)
 #' Rule=Talmud
@@ -24,7 +24,6 @@
 #' # The schedules of awards of the concede-and-divide rule.
 #' schedrule(c(2,4),c(1,2),CD)
 #' @references Thomson, W. (2019). How to divide when there isn't enough. From Aristotle, the Talmud, and Maimonides to the axiomatics of resource allocation. Cambridge University Press.
-#' @importFrom graphics points
 #' @importFrom graphics lines
 #' @importFrom graphics legend
 #' @importFrom graphics axis

@@ -20,7 +20,7 @@ dynamicplot(
 
 \item{d}{The vector of claims}
 
-\item{Rules}{The rules: AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, Talmud.}
+\item{Rules}{The rules: AA, APRO, CE, CEA, CEL, AV, DT, MO, PIN, PRO, RA, Talmud, RTalmud.}
 
 \item{claimant}{A claimant.}
 
@@ -28,10 +28,10 @@ dynamicplot(
 
 \item{times}{Number of iterations.}
 
-\item{col}{The colours. If col=NULL then the sequence of default colours is:
-c("red", "blue", "green", "yellow", "pink", "coral4", "darkgray", "burlywood3", "black", "darkorange", "darkviolet").}
+\item{col}{The colours. If \code{col=NULL} then the sequence of default colours is:
+c("red", "blue", "green", "yellow", "pink", "orange", "coral4", "darkgray", "burlywood3", "black", "darkorange", "darkviolet").}
 
-\item{legend}{A logical value. The colour legend is shown if legend=TRUE.}
+\item{legend}{A logical value. The colour legend is shown if \code{legend=TRUE}.}
 }
 \value{
 This function represents the awards proposed by different rules for a claimant if the resource decreases in each iteration by a given percentage.
@@ -40,21 +40,18 @@ This function represents the awards proposed by different rules for a claimant i
 For each claimaint, it plots the awards of the chosen rules for a dynamic model with t periods.
 }
 \details{
-Let \eqn{E\ge 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{%
-d} the vector of claims with \eqn{d\ge 0} and such that \eqn{\sum_{i=1}^{n} d_i\ge E,\ }{}
-the sum of claims exceeds the endowment.
+Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{E\ge 0} the endowment to be divided and \eqn{d\in \mathbb{R}_+^N} the vector of claims
+such that \eqn{\sum_{i \in N} d_i\ge E}.
 
-A vector \eqn{x=(x_1,\dots,x_n)}{x=(x1,...,xn)} is an awards vector for the claims problem \eqn{(E,d)} if:
-no claimant is asked to pay (\eqn{0\le x});
-no claimant  receives more than his claim (\eqn{x\le d});
-and the balance requirement is satisfied, that is, the sum of the awards is equal to the endowment (\eqn{\sum_{i=1}^{n} x_i= E}{x1+...+xn=E}).
+A vector \eqn{x=(x_1,\dots,x_n)} is an awards vector for the claims problem \eqn{(E,d)} if \eqn{0\le x \le d}
+and satisfies the balance requirement, that is, \eqn{\sum_{i=1}^{n}x_i=E}.
 
-A rule is a function that assigns to each claims problem \eqn{(E,d)} an awards vector for \eqn{(E,d)},
+A rule is a function that assigns to each claims problem \eqn{(E,d)} an awards vector,
 that is, a division between the claimants of the amount available.
 
 The formal definitions of the main rules are given in the corresponding function help.
 
-Given \eqn{l} a natural number, the function solves each claims problem in time \eqn{t}, which is \eqn{(E_t,d)}{(Et,d)}, with \eqn{E_t=(1-p)^t E}{Et=E(1-p)^t}, \eqn{p} \eqn{\in}{ in } \eqn{(0,1)} and \eqn{t=1,\ldots,l}.
+Given \eqn{l} a natural number, the function solves each claims problem in time \eqn{t}, which is \eqn{(E_t,d)}, with \eqn{E_t=(1-p)^t E}, \eqn{p\in(0,1)} and \eqn{t=1,\ldots,l}.
 }
 \examples{
 E=10
@@ -66,11 +63,11 @@ times=10
 dynamicplot(E,d,Rules,claimant,percentage,times)
 }
 \references{
-Thomson, W. (2019). How to divide when there isn't enough. From Aristotle, the Talmud, and Maimonides to the axiomatics of resource allocation. Cambridge University Press.
+Mirás Calvo, M.A., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2023). An algorithm to compute the average-of-awards rule for claims problems with an application to
+the allocation of CO\eqn{_2} emissions. Annals of Operations Research 336, 1435-1459.
 
-Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2020). An algorithm to compute the core-center rule of a claims problem with an application to
-the allocation of CO2 emissions. Working paper.
+Thomson, W. (2019). How to divide when there isn't enough. From Aristotle, the Talmud, and Maimonides to the axiomatics of resource allocation. Cambridge University Press.
 }
 \seealso{
-\link{allrules}, \link{pathawards}, \link{pathawards3}, \link{schedrule}, \link{schedrules}
+\link{allrules}, \link{pathawards}, \link{pathawards3}, \link{schedrule}, \link{schedrules}.
 }

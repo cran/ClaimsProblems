@@ -2,26 +2,23 @@
 #' @description For each claimant, it plots a vertical line with his claim and a point on the awards vector of the chosen rules.
 #' @param E The endowment.
 #' @param d The vector of claims
-#' @param Rules The rules: AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, Talmud.
-#' @param col The colours. If col=NULL then the sequence of default colours is:
-#' c("red", "blue", "green", "yellow", "pink", "coral4", "darkgray", "burlywood3", "black", "darkorange", "darkviolet").
-#' @param legend A logical value. The colour legend is shown if legend=TRUE.
+#' @param Rules The rules: AA, APRO, CE, CEA, CEL, AV, DT, MO, PIN, PRO, RA, Talmud, or RTalmud.
+#' @param col The colours. If \code{col=NULL} then the sequence of default colours is:
+#' c("red", "blue", "green", "yellow", "pink", "orange", "coral4", "darkgray", "burlywood3", "black", "darkorange", "darkviolet").
+#' @param legend A logical value. The colour legend is shown if \code{legend=TRUE}.
 #' @return This function represents the claims vector and the awards vector assigned by several rules as vertical segments.
-#' @details Let \eqn{E\ge 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{%
-#' d} the vector of claims with \eqn{d\ge 0} and such that \eqn{\sum_{i=1}^{n} d_i\ge E,\ }{}
-#' the sum of claims exceeds the endowment.
+#' @details Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{E\ge 0} the endowment to be divided and \eqn{d\in \mathbb{R}_+^N} the vector of claims
+#' such that \eqn{\sum_{i \in N} d_i\ge E}.
 #'
-#' A vector \eqn{x=(x_1,\dots,x_n)}{x=(x1,...,xn)} is an awards vector for the claims problem \eqn{(E,d)} if:
-#' no claimant is asked to pay (\eqn{0\le x});
-#' no claimant  receives more than his claim (\eqn{x\le d});
-#' and the balance requirement is satisfied, that is, the sum of the awards is equal to the endowment (\eqn{\sum_{i=1}^{n} x_i= E}{x1+...+xn=E}).
+#' A vector \eqn{x=(x_1,\dots,x_n)} is an awards vector for the claims problem \eqn{(E,d)} if \eqn{0\le x \le d}
+#' and satisfies the balance requirement, that is, \eqn{\sum_{i=1}^{n}x_i=E}.
 #'
-#' A rule is a function that assigns to each claims problem \eqn{(E,d)} an awards vector for \eqn{(E,d)},
+#' A rule is a function that assigns to each claims problem \eqn{(E,d)} an awards vector,
 #' that is, a division between the claimants of the amount available.
 #'
 #' The formal definitions of the main rules are given in the corresponding function help.
 #'
-#' @seealso \link{allrules}, \link{pathawards}, \link{pathawards3}, \link{schedrule}, \link{schedrules}
+#' @seealso \link{allrules}, \link{pathawards}, \link{pathawards3}, \link{schedrule}, \link{schedrules}.
 #' @examples
 #' E=10
 #' d=c(2,4,7,8)
@@ -45,7 +42,7 @@ verticalruleplot = function(E,d, Rules, col = NULL, legend = TRUE) {
 
   # Default colors
   if (is.null(col)) {
-    col=c("red","blue","green","yellow","pink","coral4","darkgray","burlywood3","black","darkorange","darkviolet")
+    col=c("red","blue","green","yellow","pink", "orange", "coral4","darkgray","burlywood3","black","darkorange","darkviolet")
   }
   #Names of the rules as strings
   numberrules = length(Rules)

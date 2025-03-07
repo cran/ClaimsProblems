@@ -13,29 +13,24 @@ allrules(E, d, draw = TRUE, col = NULL)
 
 \item{draw}{A logical value.}
 
-\item{col}{The colours (useful only if draw=TRUE). If col=NULL then the sequence of default colours is:
-c("red", "blue", "green", "yellow", "pink", "coral4", "darkgray", "burlywood3", "black", "darkorange", "darkviolet").}
+\item{col}{The colours (useful only if \code{draw=TRUE}). If \code{col=NULL} then the sequence of default colours is:
+c("red", "blue", "green", "yellow", "pink", "orange", "coral4", "darkgray", "burlywood3", "black", "darkorange", "darkviolet","darkgreen").}
 }
 \value{
-A data-frame with the awards vectors selected by the main division rules. If draw = TRUE, it
+A data-frame with the awards vectors selected by the main division rules. If \code{draw = TRUE}, it
 displays a mosaic plot representing the data-frame.
 }
 \description{
-This function returns the awards vectors selected, for a given claims problem, by the rules:  AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, and Talmud.
+This function returns the awards vectors selected, for a given claims problem, by the rules:  AA, APRO, CE, CEA, CEL, AV, DT, MO, PIN, PRO, RA, Talmud, and RTalmud.
 }
 \details{
-Let \eqn{E\ge 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{%
-d} the vector of claims with \eqn{d\ge 0} and such that \eqn{\sum_{i=1}^{n} d_i\ge E,\ }{}
-the sum of claims exceeds the endowment.
+Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{E\ge 0} the endowment to be divided and \eqn{d\in \mathbb{R}_+^N} the vector of claims
+such that \eqn{\sum_{i \in N} d_i\ge E}.
 
-A vector \eqn{x=(x_1,\dots,x_n)}{x=(x1,...,xn)} is an awards vector for the claims problem \eqn{(E,d)} if:
-no claimant is asked to pay (\eqn{0\le x});
-no claimant  receives more than his claim (\eqn{x\le d});
-and the balance requirement is satisfied, that is, the sum of the awards is equal to the endowment (\eqn{\sum_{i=1}^{n} x_i= E}{x1+...+xn=E}).
+A vector \eqn{x=(x_1,\dots,x_n)} is an awards vector for the claims problem \eqn{(E,d)} if \eqn{0\le x \le d}
+and satisfies the balance requirement, that is, \eqn{\sum_{i=1}^{n}x_i=E}.
 
-A rule is a function that assigns to each claims problem \eqn{(E,d)} an awards vector for \eqn{(E,d)},
-that is, a division between the claimants of the amount available.
-
+A rule is a function that assigns to each claims problem \eqn{(E,d)} an awards vector.
 The formal definitions of the main rules are given in the corresponding function help.
 }
 \examples{
@@ -44,11 +39,10 @@ d=c(2,4,7,8)
 allrules(E,d)
 }
 \references{
-Mirás Calvo, M.Á., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2022). The average-of-awards rule for claims problems. Soc Choice Welf. \doi{10.1007/s00355-022-01414-6}
+Mirás Calvo, M.A., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2022). The average-of-awards rule for claims problems. Social Choice and Welfare 59, 863-888.
 
 Thomson, W. (2019). How to divide when there isn't enough. From Aristotle, the Talmud, and Maimonides to the axiomatics of resource allocation. Cambridge University Press.
 }
 \seealso{
-\link{AA}, \link{APRO}, \link{CD}, \link{CE}, \link{CEA}, \link{CEL}
-, \link{DT}, \link{MO}, \link{PIN}, \link{PRO}, \link{RA}, \link{Talmud},  \link{verticalruleplot}
+\link{AA}, \link{APRO}, \link{axioms}, \link{CD}, \link{CE}, \link{CEA}, \link{CEL}, \link{AV}, \link{DT}, \link{MO}, \link{PIN}, \link{PRO},  \link{RA},  \link{Talmud}, \link{RTalmud}, \link{verticalruleplot}.
 }

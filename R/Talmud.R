@@ -4,24 +4,25 @@
 #' @param d The vector of claims.
 #' @param name A logical value.
 #' @return The awards vector selected by the Talmud rule.
-#' If name = TRUE, the name of the function (Talmud) as a character string.
-#' @details Let \eqn{E\ge 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{d} the vector of claims
-#' with \eqn{d\ge 0} and such that \eqn{D=\sum_{i=1}^{n} d_i\ge E}{D=\sum di \ge E}, the sum of claims \eqn{D} exceeds the endowment.
+#' If \code{name = TRUE}, the name of the function (Talmud) as a character string.
+#' @details Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{E\ge 0} the endowment to be divided and \eqn{d\in \mathbb{R}_+^N} the vector of claims
+#' such that \eqn{D=\sum_{i \in N} d_i\ge E}.
 #'
-#' The Talmud rule coincides with the constrained equal awards rule (CEA)
+#' The Talmud rule (Talmud) coincides with the constrained equal awards rule (CEA)
 #' applied to the problem \eqn{(E, d/2)} if the endowment is less or equal than the half-sum of the claims, \eqn{D/2}.
 #' Otherwise, the Talmud rule assigns \eqn{d/2} and
-#' the remainder, \eqn{E-D/2}, is awarded with the constrained equal losses rule with claims \eqn{d/2}. Therefore:
+#' the remainder, \eqn{E-D/2}, is awarded with the constrained equal losses rule with claims \eqn{d/2}. Therefore, for each \eqn{i\in N},
 #'
-#' If \eqn{E \le \frac{D}{2}}{E\le D/2} then:
-#' \deqn{Talmud(E,d) = CEA(E,d/2).}{Talmud(E,d)=CEA(E,d/2).}
+#' \deqn{\text{Talmud}_i(E,d) = \begin{cases}
+#' \min\{\frac{d_i}{2},\lambda\}   & \text{if }  E\leq \tfrac{1}{2}D\\[3pt]
+#' d_i-\min\{\frac{d_i}{2},\lambda\} & \text{if }  E \geq \tfrac{1}{2}D
+#' \end{cases},}
 #'
-#' If \eqn{E \ge \frac{D}{2}}{E\ge D/2} then:
-#' \deqn{Talmud(E,d) =d/2+ CEL(E-D/2,d/2) = d-CEA(D-E,d/2).}{Talmud(E,d) =d/2+ CEL(E-D/2,d/2) = d-CEA(D-E,d/2).}
+#' where \eqn{\lambda \geq 0} is chosen such that  \eqn{\underset{i\in N}{\sum}	\text{Talmud}_i(E,d)=E}.
 #'
 #' The Talmud rule when applied to a two-claimant problem is often referred to as the contested garment rule and coincides with concede-and-divide rule.
 #' The Talmud rule corresponds to the nucleolus of the associated (pessimistic) coalitional game.
-#' @seealso \link{allrules}, \link{CEA}, \link{CEL}, \link{AA}, \link{APRO}, \link{RA}, \link{CD}.
+#' @seealso \link{AA}, \link{allrules}, \link{APRO}, \link{axioms}, \link{CEA}, \link{CEL}, \link{CD}, \link{RA}, \link{RTalmud}.
 #' @examples
 #' E=10
 #' d=c(2,4,7,8)
@@ -45,7 +46,7 @@ Talmud = function(E, d, name = FALSE) {
   D = sum(d) #The number of claims and the total claim
   if (E < 0 || sum((d < 0)) > 0 || E > D)
     stop('(E,d) is not a claims problem.',call.=F)
-  
+
   ########## THE TALMUD RULE ##############
   if (E <= D / 2) {
     rule = CEA(E, d / 2)

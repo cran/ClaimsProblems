@@ -14,18 +14,20 @@ CEA(E, d, name = FALSE)
 \item{name}{A logical value.}
 }
 \value{
-The awards vector selected by the CEA rule. If name = TRUE, the name of the function (CEA) as a character string.
+The awards vector selected by the CEA rule. If \code{name = TRUE}, the name of the function (CEA) as a character string.
 }
 \description{
 This function returns the awards vector assigned by the constrained equal awards rule (CEA) to a claims problem.
 }
 \details{
-Let \eqn{E\ge 0} be the endowment to be divided and let \eqn{d\in \mathcal{R}^n}{d} be the vector of claims
-with \eqn{d\ge 0} and such that \eqn{\sum_{i=1}^{n} d_i\ge E,}{} the sum of claims exceeds the endowment.
+Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{E\ge 0} the endowment to be divided and \eqn{d\in \mathbb{R}_+^N} the vector of claims
+such that \eqn{\sum_{i \in N} d_i\ge E}.
 
 The constrained equal awards rule (CEA) equalizes awards under the constraint that no individual's
-award exceeds his/her claim. Then, claimant \eqn{i} receives the minimum of the claim and a value \eqn{\lambda \ge 0} chosen so as to achieve balance.
-\deqn{ CEA_i(E,d)=\min\{d_i,\lambda\},\ i=1,\dots,n, \ such \  that \ \sum_{i=1}^{n} CEA_i(E,d)=E.}{CEA(E,d)=(min\{di,\lambda\}).}
+award exceeds his/her claim. Then, claimant \eqn{i} receives the minimum of the claim and a value \eqn{\lambda \ge 0} chosen so as to achieve balance. That is, for each \eqn{i\in N},
+\deqn{ \text{CEA}_i(E,d)=\min\{d_i,\lambda\},}
+
+ where \eqn{\lambda\geq 0} is chosen  such that \eqn{\sum_{i\in N} \text{CEA}_i(E,d)=E.}
 
 The constrained equal awards rule corresponds to the Dutta-Ray solution to the associated (pessimistic) coalitional game.
 The CEA and CEL rules are dual.
@@ -39,10 +41,10 @@ D=sum(d)
 d-CEL(D-E,d)
 }
 \references{
-Maimonides, Moses, 1135-1204. Book of Judgements, Moznaim Publishing Corporation, New York, Jerusalem (Translated by Rabbi Elihahu Touger, 2000).
+Maimonides, Moses, [1135-1204], Book of Judgements (translated by Rabbi Elihahu Touger, 2000), New York and Jerusalem: Moznaim Publishing Corporation, 2000.
 
 Thomson, W. (2019). How to divide when there isn't enough. From Aristotle, the Talmud, and Maimonides to the axiomatics of resource allocation. Cambridge University Press.
 }
 \seealso{
-\link{allrules}, \link{CE}, \link{CEL}, \link{PIN}, \link{Talmud}
+\link{allrules}, \link{axioms}, \link{CE}, \link{CEL}, \link{AV}, \link{PIN}, \link{Talmud}, \link{RTalmud}.
 }

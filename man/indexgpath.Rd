@@ -17,18 +17,18 @@ indexgpath(
 \arguments{
 \item{d}{The vector of claims.}
 
-\item{Rule}{Principal Rule: AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, Talmud. By default, Rule = PRO.}
+\item{Rule}{Principal Rule: AA, APRO, CE, CEA, CEL, AV, DT, MO, PIN, PRO, RA, Talmud, RTalmud. By default, \code{Rule = PRO}.}
 
-\item{Rules}{The rules: AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, Talmud.}
+\item{Rules}{The rules: AA, APRO, CE, CEA, CEL, AV, DT, MO, PIN, PRO, RA, Talmud, RTalmud.}
 
-\item{signed}{A logical value. If signed = FALSE, it draws the deviation index path and, if signed = TRUE it draws the signed deviation index path. By default, signed = TRUE.}
+\item{signed}{A logical value. If \code{signed = FALSE}, it draws the deviation index path and, if \code{signed = TRUE} it draws the signed deviation index path. By default, \code{signed = TRUE}.}
 
-\item{col}{The colours. If col = NULL then the sequence of default colours is:
-c("red", "blue", "green", "yellow", "pink", "coral4", "darkgray", "burlywood3", "black", "darkorange", "darkviolet").}
+\item{col}{The colours. If \code{col = NULL} then the sequence of default colours is:
+c("red", "blue", "green", "yellow", "pink", "orange", "coral4", "darkgray", "burlywood3", "black", "darkorange", "darkviolet").}
 
 \item{points}{The number of endowment values to be drawn.}
 
-\item{legend}{A logical value. The legend is shown if legend = TRUE.}
+\item{legend}{A logical value. The legend is shown if \code{legend = TRUE}.}
 }
 \value{
 This function returns the deviation index path of a rule (or several rules) for a vector of claims.
@@ -37,22 +37,19 @@ This function returns the deviation index path of a rule (or several rules) for 
 The function returns the deviation index path or the signed deviation index path for a rule with respect to another rule for a vector of claims.
 }
 \details{
-Let \eqn{d\in \mathcal{R}^n}{d} be  a vector of claims rearranged from small to large, \eqn{0 \le d_1 \le...\le d_n}{%
-0 \le d1 \le...\le dn}.
+Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{d\in \mathbb{R}^N} a vector of claims rearranged from small to large, \eqn{0 \le d_1 \le...\le d_n} and \eqn{D=\sum_{i\in N}d_i}.
 
-Given two rules \eqn{R} and \eqn{S}, consider the function \eqn{J} that assigns to each \eqn{E\in (0,D]}{0<E\le D}
-the value \eqn{J(E)=I(R(E,d),S(E,d))}, that is, the signed deviation index of the rules \eqn{R} and \eqn{S} for the problem \eqn{(E,d)}.
-The graph of \eqn{J} is the signed index path of \eqn{S} in function of the rule \eqn{R} for the vector of claims \eqn{d}.
+Given two rules \eqn{\mathcal{R}} and \eqn{\mathcal{S}}, consider the function \eqn{J} that assigns to each \eqn{E\in (0,D]}
+the value \eqn{J(E)=I\Bigl(\mathcal{R}(E,d),\mathcal{S}(E,d)\Bigr)}, that is, the signed deviation index of the rules \eqn{\mathcal{R}} and \eqn{\mathcal{S}} for the problem \eqn{(E,d)}.
+The graph of \eqn{J} is the signed index path of \eqn{\mathcal{S}} in function of the rule \eqn{\mathcal{R}} for the vector of claims \eqn{d}.
 
-Given two rules \eqn{R} and \eqn{S}, consider the function \eqn{J^{+}}{J+} that assigns to each \eqn{E\in (0,D]}{0<E\le D}
-the value \eqn{J^{+}(E)=I^{+}(R(E,d),S(E,d))}{J+(E)=I+(R(E,d),S(E,d))}, that is, the deviation index of the rules \eqn{R} and \eqn{S} for the problem \eqn{(E,d)}.
-The graph of \eqn{J^{+}}{J+} is the index path of \eqn{S} in function of the rule \eqn{R} for the vector of claims \eqn{d}.
+Given two rules \eqn{\mathcal{R}} and \eqn{\mathcal{S}}, consider the function \eqn{J^{+}} that assigns to each \eqn{E\in (0,D]}
+the value \eqn{J^{+}(E)=I^{+}\Bigl(\mathcal{R}(E,d),\mathcal{S}(E,d)\Bigr)}, that is, the deviation index of the rules \eqn{\mathcal{R}} and \eqn{\mathcal{S}} for the problem \eqn{(E,d)}.
+The graph of \eqn{J^{+}} is the index path of \eqn{\mathcal{S}} in function of the rule \eqn{\mathcal{R}} for the vector of claims \eqn{d}.
 
 The signed index path and the index path are simple tools to visualize the discrepancy of the divisions
 recommended by a rule for a vector of claims with respect to the divisions recommended by another rule.
-If R = PRO, the function draws the proportionality deviation index path or the signed proportionality deviation index path.
-
-\eqn{indexpath} function of version 0.1.0 returned the signed proportionality deviation index path.
+If \eqn{\mathcal{R} = \text{PRO}}, the function draws the proportionality deviation index path or the signed proportionality deviation index path.
 }
 \examples{
 d=c(2,4,7,8)
@@ -62,12 +59,12 @@ col=c("red","green","blue")
 indexgpath(d,Rule,Rules,signed=TRUE,col)
 }
 \references{
-Ceriani, L. and Verme, P. (2012). The origins of the Gini index: extracts from Variabilitá e Mutabilitá (1912) by Corrado Gini. The Journal of Economic Inequality, 10(3), 421-443.
+Ceriani, L. and Verme, P. (2012). The origins of the Gini index: extracts from Variabilitá e Mutabilitá (1912) by Corrado Gini. The Journal of Economic Inequality 10(3), 421-443.
 
-Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez, E. (2022). Deviation from proportionality and Lorenz-domination for claims problems. Rev Econ Design. \doi{10.1007/s10058-022-00300-y}
+Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez, E. (2023). Deviation from proportionality and Lorenz-domination for claims problems. Review of Economic Design 27, 439-467.
 
 Thomson, W. (2019). How to divide when there isn't enough. From Aristotle, the Talmud, and Maimonides to the axiomatics of resource allocation. Cambridge University Press.
 }
 \seealso{
-\link{deviationindex}, \link{cumawardscurve}, \link{giniindex}, \link{lorenzcurve}, \link{lorenzdominance}, \link{allrules}.
+\link{allrules}, \link{cumawardscurve}, \link{deviationindex}, \link{giniindex}, \link{lorenzcurve}, \link{lorenzdominance}.
 }

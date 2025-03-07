@@ -11,14 +11,14 @@ schedrules(d, claimant, Rules, col = NULL, points = 201, legend = TRUE)
 
 \item{claimant}{A claimant.}
 
-\item{Rules}{The rules: AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, Talmud.}
+\item{Rules}{The rules: AA, APRO, CE, CEA, CEL, AV, DT, MO, PIN, PRO, RA, Talmud, RTalmud.}
 
-\item{col}{The colours. If col = NULL then the sequence of default colours is:
-c("red", "blue", "green", "yellow", "pink", "coral4", "darkgray", "burlywood3", "black", "darkorange", "darkviolet").}
+\item{col}{The colours. If \code{col = NULL} then the sequence of default colours is:
+c("red", "blue", "green", "yellow", "pink", "orange", "coral4", "darkgray", "burlywood3", "black", "darkorange", "darkviolet").}
 
 \item{points}{The number of endowment values to draw the path.}
 
-\item{legend}{A logical value. The colour legend is shown if legend = TRUE.}
+\item{legend}{A logical value. The colour legend is shown if \code{legend = TRUE}.}
 }
 \value{
 The graphical representation of the schedules of awards of the rules for the claims vector and the same claimant.
@@ -27,11 +27,11 @@ The graphical representation of the schedules of awards of the rules for the cla
 This function returns the graphical representation of the schedules of awards of different rules for a claims vector and a given claimant.
 }
 \details{
-Let \eqn{d\in \mathcal{R}^n}{d}, with \eqn{d\ge 0}, be a vector of claims and
- denote  \eqn{D=\sum_{i=1}^{n} d_i}{D=\sum di} the sum of claims.
+Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{d\in \mathbb{R}_+^N} a vector of claims and
+ denote by  \eqn{D=\sum_{i\in N} d_i} the sum of the claims.
 
-The schedules of awards of a rule \eqn{R} for claimant \eqn{i} is the function \eqn{S} that assigns to each \eqn{E\in [0,D]}{0\le E \le D} the  value:
-\eqn{S(E)=R_i(E,d)\in \mathcal{R}}{S(E)=Ri(E,d)}.
+The schedules of awards of a rule \eqn{\mathcal{R}} for claimant \eqn{i} is the function \eqn{S} that assigns to each \eqn{E\in [0,D]} the  value:
+\eqn{S(E)=\mathcal{R}_i(E,d)\in \mathbb{R}}.
 Therefore, the schedules of awards of a rule plots each claimants's award as a function of \eqn{E}.
 }
 \examples{
@@ -45,5 +45,5 @@ schedrules(d,claimant,Rules,col)
 Thomson, W. (2019). How to divide when there isn't enough. From Aristotle, the Talmud, and Maimonides to the axiomatics of resource allocation. Cambridge University Press.
 }
 \seealso{
-\link{schedrule}, \link{pathawards}, \link{pathawards3}, \link{verticalruleplot}
+\link{pathawards}, \link{pathawards3}, \link{schedrule}, \link{verticalruleplot}.
 }

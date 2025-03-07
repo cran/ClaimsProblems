@@ -14,17 +14,17 @@ PRO(E, d, name = FALSE)
 \item{name}{A logical value.}
 }
 \value{
-The awards vector selected by the PRO rule. If name = TRUE, the name of the function (PRO) as a character string.
+The awards vector selected by the PRO rule. If \code{name = TRUE}, the name of the function (PRO) as a character string.
 }
 \description{
 This function returns the awards vector assigned by the proportional rule (PRO) to a claims problem.
 }
 \details{
-Let \eqn{E\ge 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{d} the vector of claims
-with \eqn{d\ge 0} and such that \eqn{D=\sum_{i=1}^{n} d_i\ge E}{D=\sum di \ge E}, the sum of claims \eqn{D} exceeds the endowment.
+Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{E\ge 0} the endowment to be divided and \eqn{d\in \mathbb{R}_+^N} the vector of claims
+such that \eqn{D=\sum_{i \in N} d_i\ge E}.
 
-The proportional rule distributes awards proportional to claims.
-\deqn{PRO(E,d)=\frac{E}{D}d}{PRO(E,d)=(E/D)*d}
+The proportional rule (PRO) distributes awards proportional to claims, that is,
+\deqn{\text{PRO}(E,d)=\frac{E}{D}d.}
 }
 \examples{
 E=10
@@ -37,5 +37,5 @@ Aristotle, Ethics, Thompson, J.A.K., tr. 1985. Harmondsworth: Penguin.
 Thomson, W. (2019). How to divide when there isn't enough. From Aristotle, the Talmud, and Maimonides to the axiomatics of resource allocation. Cambridge University Press.
 }
 \seealso{
-\link{allrules}, \link{APRO}
+\link{allrules}, \link{APRO}, \link{axioms}.
 }

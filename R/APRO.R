@@ -3,34 +3,23 @@
 #' @param E The endowment.
 #' @param d The vector of claims.
 #' @param name A logical value.
-#' @return The awards vector selected by the APRO rule. If name = TRUE, the name of the function (APRO) as a character string.
-#' @details Let \eqn{E\ge 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{%
-#'  d} the vector of claims
-#' with \eqn{d\ge 0} and such that \eqn{\sum_{i=1}^{n} d_i\ge E,}{%
-#' } the sum of claims exceeds the endowment.
+#' @return The awards vector selected by the APRO rule. If \code{name = TRUE}, the name of the function (APRO) as a character string.
+#' @details Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{E\ge 0} the endowment to be divided and \eqn{d\in \mathbb{R}_+^N} the vector of claims
+#' such that \eqn{\sum_{i \in N} d_i\ge E}. For each coalition \eqn{S\in 2^N}, let \eqn{d(S)=\sum_{j\in S}d_j}
+#'  and \eqn{N\backslash S} be the complementary coalition of \eqn{S}.
 #'
-#' For each subset \eqn{S} of the set of claimants \eqn{N}, let \eqn{d(S)=\sum_{j\in S}d_j}{d(S)} be the sum of claims of the members of \eqn{S}
-#'  and let \eqn{N\backslash S}{N-S} be the complementary coalition of \eqn{S}.
+#' The minimal right of claimant \eqn{i\in N} in \eqn{(E,d)} is whatever is left after every other claimant has received his claim, or 0 if that is not possible:
+#' \deqn{m_i(E,d)=\max\{0,E-d(N\backslash\{i\})\},\ i=1,\dots,n.}
+#' Let \eqn{m(E,d)=(m_1(E,d),\dots,m_n(E,d))} be the vector of minimal rights.
 #'
-#' The minimal right of claimant \eqn{i} in \eqn{(E,d)} is whatever is left after every other claimant has received his claim, or 0 if that is not possible:
-#' \deqn{m_i(E,d)=\max\{0,E-d(N\backslash\{i\})\},\ i=1,\dots,n.}{mi = max\{ 0 , E-d(N-\{i\}) \}, i=1,\dots,n.}
-#' Let \eqn{m(E,d)=(m_1(E,d),\dots,m_n(E,d))}{m(E,d)=(m1,\dots,mn)} be the vector of minimal rights.
-#'
-#' The truncated claim of claimant \eqn{i} in \eqn{(E,d)} is the minimum of the claim and the endowment:
-#' \deqn{t_i(E,d)=\min\{d_i,E\},\ i=1,\dots,n.}{ti = min\{di,E\}, i=1,\dots,n.}
-#' Let \eqn{t(E,d)=(t_1(E,d),\dots,t_n(E,d))}{t(E,d)=(t1,\dots,tn)} be the vector of truncated claims.
-#'
-#' The adjusted proportional rule first gives to each claimant the minimal right, and then divides the remainder
-#' of the endowment \eqn{E'=E-\sum_{i=1}^n m_i(E,d)}{%
-#' }
+#' The adjusted proportional rule (APRO) first assigns to each claimant its minimal right, and then divides the remainder
+#' of the endowment \eqn{E'=E-\sum_{i=1}^n m_i(E,d)}
 #' proportionally with respect to the new claims. The vector of the new claims \eqn{d'} is determined by the minimum of the remainder and the lowered claims,
-#' \eqn{d_i'=\min\{E-\sum_{j=1}^n m_j(E,d),d_i-m_i\},\  i=1,\dots,n}{d'i=min\{E-\sum mj,di-mi\}, i=1,\dots,n
-#' }. Therefore:
-#' \deqn{APRO(E,d)=m(E,d)+PRO(E',d').}{%
-#' APRO(E,d)=m(E,d)+PRO(E-\sum mi,d').}
+#' \eqn{d_i'=\min\{E-\sum_{j=1}^n m_j(E,d),d_i-m_i\},\  i=1,\dots,n}. Therefore,
+#' \deqn{\text{APRO}(E,d)=m(E,d)+\text{PRO}(E',d').}
 #'
 #' The adjusted proportional rule corresponds to the \eqn{\tau}-value of the associated (pessimistic) coalitional game.
-#' @seealso \link{allrules}, \link{CD}, \link{PRO}, \link{coalitionalgame}
+#' @seealso \link{allrules}, \link{axioms}, \link{CD}, \link{coalitionalgame}, \link{PRO}.
 #' @examples
 #' E=10
 #' d=c(2,4,7,8)
@@ -38,8 +27,9 @@
 #' #The adjusted proportional rule is self-dual: APRO(E,d)=d-APRO(D-E,d)
 #' D=sum(d)
 #' d-APRO(D-E,d)
-#' @references Curiel, I. J., Maschler, M., and Tijs, S. H. (1987). Bankruptcy games. Zeitschrift für operations research, 31(5), A143-A159.
-#' @references Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2021). The adjusted proportional and the minimal overlap rules restricted to the lower-half, higher-half, and middle domains. Working paper 2021-02, ECOBAS.
+#' @references Curiel, I. J., Maschler, M., and Tijs, S. H. (1987). Bankruptcy games. Zeitschrift für operations research 31(5), A143-A159.
+#' @references Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2023). Refining the Lorenz‐ranking of rules for
+#' claims problems on restricted domains. International Journal of Economic Theory 19(3), 526-558.
 #' @references Thomson, W. (2019). How to divide when there isn't enough. From Aristotle, the Talmud, and Maimonides to the axiomatics of resource allocation. Cambridge University Press.
 #' @export
 

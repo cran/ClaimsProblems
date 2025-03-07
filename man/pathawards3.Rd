@@ -11,7 +11,7 @@ pathawards3(d, claimants, Rule, col = "red", points = 300)
 
 \item{claimants}{Three claimants.}
 
-\item{Rule}{The rule: AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, Talmud.}
+\item{Rule}{The rule: AA, APRO, CE, CEA, CEL, AV, DT, MO, PIN, PRO, RA, Talmud, RTalmud.}
 
 \item{col}{The colour of the path, by default, col="red".}
 
@@ -24,11 +24,11 @@ The graphical representation of the path of awards of a rule for the given claim
 This function returns the graphical representation of the path of awards of any rule for a claims vector and three claimants.
 }
 \details{
-Let \eqn{d\in \mathcal{R}^n}{d}, with \eqn{d\ge 0}, be a vector of claims and
- denote  \eqn{D=\sum_{i=1}^{n} d_i}{D=\sum di} the sum of claims.
+Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{d\in \mathbb{R}_+^N} a vector of claims and
+ denote by \eqn{D=\sum_{i \in N} d_i} the sum of claims.
 
-The path of awards of a rule \eqn{R} for three claimants \eqn{i}, \eqn{j}, and \eqn{k} is the parametric curve:
-\deqn{p(E)=\{(R_i(E,d),R_j(E,d),R_k(E,d))\in \mathcal{R}^3:\;E\in[0,D]\}.}{p(E)=\{(Ri(E,d),Rj(E,d),Rk(E,d)): 0\le E \le D\}.}
+The path of awards of a rule \eqn{\mathcal{R}} for three claimants \eqn{i,j,k\in N} is the parametric curve:
+\deqn{p(E)=\Bigl\{(\mathcal{R}_i(E,d),\mathcal{R}_j(E,d),\mathcal{R}_k(E,d))\in \mathbb{R}^3:\;E\in[0,D]\Bigr\}.}
 }
 \examples{
 d=c(2,4,7,8)
@@ -37,5 +37,5 @@ Rule=Talmud
 pathawards3(d,claimants,Rule)
 }
 \seealso{
-\link{pathawards}, \link{schedrule}, \link{schedrules}, \link{verticalruleplot}
+\link{pathawards}, \link{schedrule}, \link{schedrules}, \link{verticalruleplot}.
 }

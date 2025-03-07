@@ -1,0 +1,391 @@
+#' @title Properties of the rules
+#' @description This function shows which of the main properties the rules satisfy.
+#' @param Rules The rules: AA, APRO, CE, CEA, CEL, AV, MO, PIN, PRO, RA, Talmud. By default, \code{Rules = "All"}.
+#' @param Properties The properties listed in the description section. By default, \code{Properties = "All"}.
+#' @return A table with the rules and the properties. If a rule satisfies a property it returns 1, and 0 otherwise. By default, it returns a table with all rules and properties.
+#' @details Let \eqn{\mathcal{N}} be the set of all finite nonempty subsets of the natural numbers \eqn{\mathbb{N}}. Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{E\ge 0} the endowment to be divided and \eqn{d\in \mathbb{R}_+^N} the vector of claims
+#' such that \eqn{D=\sum_{i \in N} d_i\ge E}. We denote the class of claims problems with set of
+#' claimants \eqn{N} by \eqn{C^N}. Given \eqn{z\in\mathbb{R}^N}, \eqn{S\in 2^N} and \eqn{N'\subset N\in\mathcal{N}}, let \eqn{z(S)=\sum_{j\in S}z_j}, \eqn{z_{N'}=(z_i)_{i\in N'}} and denote \eqn{z_{-i}=z_{N\backslash \{i\}}\in \mathbb{R}^{N\backslash \{i\}}}. For simplicity, we will write \eqn{z=(z_{-i},z)}.
+#'
+#' The minimal right of claimant \eqn{i\in N} in \eqn{(E,d)} is defined by \eqn{m_i(E,d)=\max\{0,E-d(N\backslash\{i\})\}.}
+#' Let \eqn{m(E,d)=(m_1(E,d),\dots,m_n(E,d))} be the vector of minimal rights.
+#'
+#' The truncated claim of claimant \eqn{i\in N} in \eqn{(E,d)} is defined by
+#' \eqn{t_i(E,d)=\min\{d_i,E\}.} Let \eqn{t(E,d)=(t_1(E,d),\dots,t_n(E,d))} be the vector of truncated claims.
+#'
+#' Given \eqn{(E,d)\in C^N} and \eqn{k\in\mathbb{N}}, we say that \eqn{(E',d')} is a \eqn{k}-replica of \eqn{(E,d)} if \eqn{E'=k E}, \eqn{N'\supset N}, \eqn{|N'|=k|N|}, and there is a partition \eqn{(N^i)_{i\in N}} of \eqn{N'} such that for each \eqn{i\in N} and each \eqn{j\in N^i}, \eqn{|N^i|=k} and \eqn{d'_j=d_i}.
+#'
+#' A vector \eqn{x=(x_1,\dots,x_n)} is an awards vector for the claims problem \eqn{(E,d)\in C^N} if \eqn{0\le x \le d}
+#' and satisfies the balance requirement, that is, \eqn{x(N)=E}. Let \eqn{X(E,d)} be the set of awards vectors for the problem \eqn{(E,d)}.
+#' A rule is a function that assigns to each claims problem \eqn{(E,d)} an awards vector.
+#'
+#' A rule \eqn{\mathcal{R}} satisfies:
+#'
+#' 1) \bold{Anonymity}, if for each \eqn{(E,d)\in C^N}, each bijection \eqn{f} from \eqn{N} into itself, and each \eqn{i\in N}, we have that \eqn{\mathcal{R}_i(E,d)=\mathcal{R}_{f(i)}(E,(d_{f(i)})_{i\in N})}.
+#'
+#' 2) \bold{Continuity}, if for each sequence \eqn{\{(E^{\ell},d^{\ell})\}} of elements of \eqn{C^N} and  each \eqn{(E,d)\in C^N}, if \eqn{(E^{\ell},d^{\ell})\rightarrow (E,d)} then \eqn{\mathcal{R}(E^{\ell},d^{\ell})\rightarrow \mathcal{R}(E,d)}.
+#'
+#' 3) \bold{Homogeneity}, if for each \eqn{(E,d)\in C^N} and each \eqn{\rho>0}, then \eqn{\mathcal{R}(\rho E,\rho d)=\rho \mathcal{R}(E,d)}.
+#'
+#' 4) \eqn{\mathbf{\tfrac{1}{|N|}}}\bold{-truncated-claims lower bounds on awards}, if for each \eqn{(E,d)\in C^N}, then  \eqn{\mathcal{R}(E,d) \geq \frac{1}{|N|} t(E,d)}.
+#'
+#' 5) \eqn{\mathbf{\tfrac{1}{|N|}}}\bold{-min-of-claims-and-deficit lower bounds on losses}, if for each \eqn{(E,d)\in C^N}, then  \eqn{d-\mathcal{R}(E,d) \geq \frac{1}{|N|} t(D-E,d)}.
+#'
+#' 6) \bold{Equal treatment of equals}, if for each \eqn{(E,d)\in C^N} and each pair \eqn{\{i,j\}\in N}, if \eqn{d_i=d_j}, then \eqn{\mathcal{R}_i(E,d)=\mathcal{R}_j(E,d)}.
+#'
+#' 7) \bold{Equal treatment of equal groups}, if for each \eqn{(E,d)\in C^N} and each pair \eqn{\{N',N''\}} of subsets of \eqn{N}, if \eqn{d(N')=d(N'')}, then \eqn{\sum_{i\in N'}\mathcal{R}_i(E,d)=\sum_{i\in N''}\mathcal{R}_i(E,d)}.
+#'
+#' 8) \bold{Order preservation}, if for each \eqn{(E,d)\in C^N} and each pair \eqn{\{i,j\} \subset N}, if \eqn{d_i \leq d_j}, then \eqn{\mathcal{R}_i(E,d)\leq \mathcal{R}_j(E,d)} (in awards) and \eqn{d_i-\mathcal{R}_i(E,d)\leq d_j-\mathcal{R}_j(E,d)} (in losses).
+#'
+#' 9) \bold{Group order preservation}, if for each \eqn{(E,d)\in C^N} and each pair \eqn{\{N',N''\}} of subsets of \eqn{N}, if \eqn{d(N') \leq d(N'')}, then \eqn{\sum_{i\in N'}\mathcal{R}_i(E,d)\leq \sum_{i\in N''}\mathcal{R}_i(E,d)} (in awards) and \eqn{\sum_{i\in N'}(d_i-\mathcal{R}_i(E,d))\leq \sum_{i\in N''}(d_i-\mathcal{R}_i(E,d))} (in losses).
+#'
+#' 10) \bold{Conditional null compensation}, if for each \eqn{(E,d)\in C^N} and each \eqn{i\in N}, if \eqn{\sum_{j\in N}\max\{0,d_j-d_i\}\geq E}, then \eqn{\mathcal{R}_i(E,d)=0}.
+#'
+#' 11) \bold{Conditional full compensation}, if for each \eqn{(E,d)\in C^N} and each \eqn{i\in N}, if \eqn{\sum_{j\in N}\min\{d_j,d_i\} \leq E}, then \eqn{\mathcal{R}_i(E,d)=d_i}.
+#'
+#' 12) \bold{Linked claim-endowment monotonicity}, if for each \eqn{(E,d)\in C^N}, each \eqn{i\in N}, and each \eqn{\delta>0}, we have \eqn{\mathcal{R}_i(E+\delta,(d_{-i},d_i+\delta))-\mathcal{R}_i(E,d)\leq \delta}.
+#'
+#' 13) \bold{Claim monotonicity},  if for each \eqn{(E,d)\in C^N}, each \eqn{i \in N}, and each \eqn{d'_i \geq d_i}, \eqn{\mathcal{R}_i(E,(d_{-i}, d'_i))\geq \mathcal{R}_i(E,d)}.
+#'
+#' 14) \bold{Population monotonicity}, if for each pair \eqn{N,N'} of subsets of \eqn{\mathcal{N}} such that \eqn{N'\subset N}, and each \eqn{(E,d)\in C^N}, we have \eqn{\mathcal{R}_{N'}(E,d)\leq \mathcal{R}(E,d_{N'})}.
+#'
+#' 15) \bold{Linked endowment-population monotonicity}, if for each pair \eqn{N,N'} of subsets of \eqn{\mathcal{N}} such that \eqn{N'\subset N}, and each \eqn{(E,d)\in C^N}, if \eqn{d(N')\geq E}, we have \eqn{\mathcal{R}(E,d_{N'})\leq \mathcal{R}_{N'}(E+d(N\backslash N'),d)}.
+#'
+#' 16) \bold{Progressivity}, if for each \eqn{(E,d)\in C^N} and each pair \eqn{\{i,j\}\subset N}, if \eqn{0<d_i\leq d_j}, we have \eqn{\frac{\mathcal{R}_i(E,d)}{d_i}\leq \frac{\mathcal{R}_j(E,d)}{d_j}}.
+#'
+#' 17) \bold{Regressivity}, if for each \eqn{(E,d)\in C^N} and each pair \eqn{\{i,j\}\subset N}, if \eqn{0<d_i\leq d_j}, we have \eqn{\frac{\mathcal{R}_i(E,d)}{d_i}\geq \frac{\mathcal{R}_j(E,d)}{d_j}}.
+#'
+#' 18) \bold{No transfer paradox}, if for each \eqn{(E,d)\in C^N}, each pair \eqn{\{i,j\}\subset N}, each \eqn{d'_i>d_i}, and each \eqn{0\leq d'_j<d_j}, if \eqn{d'_i+d'_j=d_i+d_j}, then \eqn{\mathcal{R}_i(E,(d'_i,d'_j,d_{N\backslash \{i,j\}})) \geq \mathcal{R}_i(E,d)} and \eqn{\mathcal{R}_j(E,(d'_i,d'_j,d_{N\backslash \{i,j\}}))\leq \mathcal{R}_j(E,d)}.
+#'
+#' 19) \bold{Bounded impact of claims transfer}, if for each \eqn{(E,d)\in C^N}, each pair \eqn{\{i,j\}\subset N}, each \eqn{d'_i>d_i}, and each \eqn{0\leq d'_j<d_j}, if \eqn{d'_i+d'_j=d_i+d_j}, then \eqn{\mathcal{R}_i(E,(d'_i,d'_j,d_{N\backslash \{i,j\}}))- \mathcal{R}_i(E,d)\leq d'_i-d_i} and \eqn{\mathcal{R}_j(E,d)-\mathcal{R}_j(E,(d'_i,d'_j,d_{N\backslash \{i,j\}}))\leq d_j-d'_j}.
+#'
+#' 20) \bold{Concavity}, if for each \eqn{(E,d)\in C^N}, each triple \eqn{\{E,E',E''\}\subset \mathbb{R}^+} such that \eqn{0<E<E'<E''\leq D}, and each pair \eqn{\{i,j\}\subset N}, if \eqn{0<d_i\leq d_j}, then \eqn{\frac{\mathcal{R}_j(E',d)-\mathcal{R}_j(E,d)}{\mathcal{R}_i(E',d)-\mathcal{R}_i(E,d)}\geq \frac{\mathcal{R}_j(E'',d)-\mathcal{R}_j(E',d)}{\mathcal{R}_i(E'',d)-\mathcal{R}_i(E',d)}}, if these ratios are well defined.
+#'
+#' 21) \bold{Convexity}, if for each \eqn{(E,d)\in C^N}, each triple \eqn{\{E,E',E''\}\subset \mathbb{R}^+} such that \eqn{0<E<E'<E''\leq D}, and each pair \eqn{\{i,j\}\subset N}, if \eqn{0<d_i\leq d_j}, then \eqn{\frac{\mathcal{R}_j(E',d)-\mathcal{R}_j(E,d)}{\mathcal{R}_i(E',d)-\mathcal{R}_i(E,d)}\leq \frac{\mathcal{R}_j(E'',d)-\mathcal{R}_j(E',d)}{\mathcal{R}_i(E'',d)-\mathcal{R}_i(E',d)}}, if these ratios are well defined.
+#'
+#' 22) \bold{Endowment monotonicity}, if for each \eqn{(E,d)\in C^N} and each \eqn{E' >E}, if \eqn{D \geq E'} then \eqn{\mathcal{R}(E',d) \geq \mathcal{R}(E,d)}.
+#'
+#' 23) \bold{Order preservation under endowment variations}, if for each \eqn{(E,d)\in C^N}, each pair \eqn{\{i,j\}\subset N} and each \eqn{E'>E}, if \eqn{D\geq E'} and \eqn{d_i\leq d_j}, then \eqn{\mathcal{R}_i(E',d)-\mathcal{R}_i(E,d)\leq \mathcal{R}_j(E',d)-\mathcal{R}_j(E,d)}.
+#'
+#' 24) \bold{Order preservation under claims variations}, if for each \eqn{(E,d)\in C^N} with \eqn{|N|\geq 3}, each \eqn{i\in N}, each \eqn{d'_i>d_i}, and each pair \eqn{\{j,k\}\subset N\backslash\{i\}}, if \eqn{d_j\leq d_k}, then \eqn{\mathcal{R}_j(E,d)-\mathcal{R}_j(E,(d_{-i},d'_i))\leq \mathcal{R}_k(E,d)-\mathcal{R}_k(E,(d_{-i},d'_i))}.
+#'
+#' 25) \bold{Minimal rights first}, if for each \eqn{(E,d)\in C^N}, \eqn{\mathcal{R}(E,d) =m(E,d)+\mathcal{R}\bigl( E-\underset{i\in N}{\sum} m_i(E,d),d-m(E,d) \bigr)}.
+#'
+#' 26) \bold{Claims truncation invariance}, if for each \eqn{(E,d)\in C^N},  \eqn{\mathcal{R}(E,d) =\mathcal{R}( E, t(E,d) )}.
+#'
+#' 27) \bold{Composition down}, if for each \eqn{(E,d)\in C^N} and each \eqn{E'<E}, we have \eqn{\mathcal{R}(E',d)=\mathcal{R}(E',\mathcal{R}(E,d))}.
+#'
+#' 28) \bold{Composition up}, if for each \eqn{(E,d)\in C^N} and each \eqn{E'>E} such that \eqn{D \geq E'},  we have \eqn{\mathcal{R}(E',d)=\mathcal{R}(E,d)+\mathcal{R}(E'-E,d-\mathcal{R}(E,d))}.
+#'
+#' 29) \bold{Midpoint property}, if for each \eqn{(E,d)\in C^N} such that \eqn{E=\frac{1}{2}D}, then \eqn{\mathcal{R}(E,d)=\frac{d}{2}}.
+#'
+#' 30) \bold{Self-duality}, if for each \eqn{(E,d)\in C^N}, \eqn{\mathcal{R}(E,d) =d- \mathcal{R}\bigl(D-E,d\bigr)}.
+#'
+#' 31) \bold{Claims separability}, if for each pair \eqn{(E,d),(E',d')\in C^N} and each \eqn{N'\subset N}, if \eqn{d_{N'}=d'_{N'}}, \eqn{E=E'}, and \eqn{\sum_{i\in N'}\mathcal{R}_i(E,d)=\sum_{i\in N'}\mathcal{R}_i(E',d')}, then \eqn{\mathcal{R}_{N'}(E,d)=\mathcal{R}_{N'}(E',d')}.
+#'
+#' 32) \bold{Claims-and-endowment separability}, if for each pair \eqn{(E,d),(E',d')\in C^N} and each \eqn{N'\subset N}, if \eqn{d_{N'}=d'_{N'}} and \eqn{\sum_{i\in N'}\mathcal{R}_i(E,d)=\sum_{i\in N'}\mathcal{R}_i(E',d')}, then \eqn{\mathcal{R}_{N'}(E,d)=\mathcal{R}_{N'}(E',d')}.
+#'
+#' 33) \bold{Endowment convexity}, if for each \eqn{d\in\mathbb{R}^N_+}, each pair \eqn{\{E,E'\}\subset \mathbb{R}_+} such that \eqn{D\geq \max\{E,E'\}}, and each \eqn{\lambda\in[0,1]}, \eqn{\mathcal{R}(\lambda E+(1-\lambda)E',d)=\lambda\mathcal{R}(E,d)+(1-\lambda)\mathcal{R}(E',d)}.
+#'
+#' 34) \bold{Claims-and-endowment uniformity}, if for each pair \eqn{(E,d),(E',d')\in C^N}, and each \eqn{N'\subset N}, if \eqn{d_{N'}=d'_{N'}}, then either \eqn{\mathcal{R}_{N'}(E,d)\geq \mathcal{R}_{N'}(E',d')} or \eqn{\mathcal{R}_{N'}(E,d)\leq \mathcal{R}_{N'}(E',d')}.
+#'
+#' 35) \bold{Endowment-and-population uniformity}, if for each pair \eqn{N,N'} of subsets of \eqn{\mathcal{N}} such that \eqn{N'\subset N}, each \eqn{(E,d)\in C^N}, and each \eqn{(E',d')\in C^{N'}}, if \eqn{d_{N'}=d'}, then either \eqn{\mathcal{R}_{N'}(E,d)\geq \mathcal{R}(E',d')} or \eqn{\mathcal{R}_{N'}(E,d)\leq \mathcal{R}(E',d')}.
+#'
+#' 36) \bold{No advantageous transfer}, if for each \eqn{(E,d)\in C^N}, each \eqn{N'\subset N}, and each \eqn{(d'_i)_{i\in N'}}, if \eqn{d'(N')=d(N')}, then \eqn{\sum_{i\in N'}\mathcal{R}_i(E,((d'_i)_{i\in N'},d_{N\backslash N'}))=\sum_{i\in N'}\mathcal{R}_i(E,d)}.
+#'
+#' 37) \bold{Summation independence}, if for each \eqn{(E,d)\in C^N}, each \eqn{i\in N}, and \eqn{N'=N\backslash \{i\}}, for each \eqn{(d'_j)_{j\in N'}\in\mathbb{R}^{N'}_+}, if \eqn{d'(N')=d(N')}, then \eqn{\mathcal{R}_i(E,(d_i,(d'_j)_{j\in N'}))=\mathcal{R}_i(E,d)}.
+#'
+#' 38) \bold{Consistency}, if for each pair \eqn{N,N'} of subsets of \eqn{\mathcal{N}} such that \eqn{N'\subset N}, and each \eqn{(E,d)\in C^N} if \eqn{x=\mathcal{R}(E,d)}, then \eqn{x_{N'}=\mathcal{R}(x(N'),d_{N'})}.
+#'
+#' 39) \bold{Bilateral consistency}, if for each pair \eqn{N,N'} of subsets of \eqn{\mathcal{N}} such that \eqn{N'\subset N} and \eqn{|N'|=2}, and each \eqn{(E,d)\in C^N} if \eqn{x=\mathcal{R}(E,d)}, then \eqn{x_{N'}=\mathcal{R}(x(N'),d_{N'})}.
+#'
+#' 40) \bold{Converse consistency}, if for each pair \eqn{N,N'} of subsets of \eqn{\mathcal{N}} such that \eqn{N'\subset N} and \eqn{|N'|=2}, each \eqn{(E,d)\in C^N}, and each \eqn{x\in X(E,d)}, we have \eqn{x_{N'}=\mathcal{R}(x(N'),d_{N'})}, then \eqn{x=\mathcal{R}(E,d)}.
+#'
+#' 41) \bold{Null claims consistency}, if for each pair \eqn{N,N'} of subsets of \eqn{\mathcal{N}} such that \eqn{N'\subset N} and each \eqn{(E,d)\in C^N}, if \eqn{d_{N\backslash N'}=0}, then \eqn{\mathcal{R}_{N'}(E,d)= \mathcal{R}(E,d_{N'})}.
+#'
+#' 42) \bold{Null compensation consistency}, if for each pair \eqn{N,N'} of subsets of \eqn{\mathcal{N}} such that \eqn{N'\subset N}, and each \eqn{(E,d)\in C^N},  if \eqn{\mathcal{R}_{N\backslash N'}(E,d)=0}, then \eqn{\mathcal{R}_{N'}(E,d)=\mathcal{R}(E,d_{N'})}.
+#'
+#' 43) \bold{Full compensation consistency}, if for each pair \eqn{N,N'} of subsets of \eqn{\mathcal{N}} such that \eqn{N'\subset N}, and each \eqn{(E,d)\in C^N}, if \eqn{\mathcal{R}_{N\backslash N'}(E,d)=d_{N\backslash N'}}, then \eqn{\mathcal{R}_{N'}(E,d)=\mathcal{R}(E-d(N\backslash N'),d_{N'})}.
+#'
+#' 44) \bold{No advantageous merging}, if for each pair \eqn{N,N'} of subsets of \eqn{\mathcal{N}} such that \eqn{N'\subset N}, each \eqn{(E,d)\in C^N}, and each \eqn{d'\in \mathbb{R}^{N'}_+}, if there is \eqn{i\in N'} such that \eqn{d'_i=d_i+d(N\backslash N')} and for each \eqn{k\in N'\backslash\{i\}}, \eqn{d'_k=d_k}, then \eqn{\mathcal{R}_i(E,d')\leq \mathcal{R}_i(E,d)+\sum_{j\in N\backslash N'} \mathcal{R}_j(E,d)}.
+#'
+#' 45) \bold{No advantageous splitting}, if for each pair \eqn{N,N'} of subsets of \eqn{\mathcal{N}} such that \eqn{N'\subset N}, each \eqn{(E,d)\in C^N}, and each \eqn{d'\in \mathbb{R}^{N'}_+}, if there is \eqn{i\in N'} such that \eqn{d'_i=d_i+d(N\backslash N')} and for each \eqn{k\in N'\backslash\{i\}}, \eqn{d'_k=d_k}, then \eqn{\mathcal{R}_i(E,d')\geq \mathcal{R}_i(E,d)+\sum_{j\in N\backslash N'} \mathcal{R}_j(E,d)}.
+#'
+#' 46) \bold{Order preservation under population variations}, if for each pair \eqn{N,N'} of subsets of \eqn{\mathcal{N}} such that \eqn{N'\subset N}, each \eqn{(E,d)\in C^N}, and each pair \eqn{\{i,j\}\subset N'}, if \eqn{d(N')\geq E} and \eqn{d_i\leq d_j}, then \eqn{\mathcal{R}_i(E,d_{N'})-\mathcal{R}_i(E,d)\leq \mathcal{R}_j(E,d_{N'})-\mathcal{R}_j(E,d)}.
+#'
+#' 47) \bold{Division invariance}, if for each pair \eqn{N,N'} of subsets of \eqn{\mathcal{N}} such that \eqn{N'\supset N}, each \eqn{(E,d)\in C^N} and each \eqn{k\in \mathbb{N}}. Let \eqn{(E',d')} be a \eqn{k}-replica of \eqn{(E,d)} with associated partition \eqn{(N^i)_{i\in N}}, and \eqn{\mathcal{R}(E',d')} be a \eqn{k}-replica of some awards vector \eqn{x\in X(E,d)} associated with the same partition, we have \eqn{\mathcal{R}(E,d)=x}.
+#'
+#' 48) \bold{Replication invariance}, if for each pair \eqn{N,N'} of subsets of \eqn{\mathcal{N}} such that \eqn{N'\supset N}, each \eqn{(E,d)\in C^N} and each \eqn{k\in \mathbb{N}}. Let \eqn{(E',d')} be a \eqn{k}-replica of \eqn{(E,d)} with associated partition \eqn{(N^i)_{i\in N}}, then for each \eqn{i\in N} and each \eqn{j\in N^i} we have \eqn{\mathcal{R}_j(E',d')=\mathcal{R}_i(E,d)}.
+#'
+#' @examples
+#' Rules=c(AA,Talmud)
+#' Properties=c(1:10)
+#' axioms(Rules,Properties)
+#' axioms() #Table with all the rules and properties implemented.
+#' # The minimal overlap rule does not satisfy linked endowment-population
+#' # monotonicity (Mirás Calvo et al. (2024)):
+#' E=1;d=c(1,2,9,10); d3= d[-3]
+#' MOR=MO(E+d[3],d)
+#' MOR3=MO(E,d3)
+#' MOR3[1]>MOR[1]
+#' # The adjusted proportional rule does not satisfy order preservation under
+#' # population variations (Mirás Calvo et al. (2023)):
+#' E=17; d=c(1,2,3,8,10); d3=d[-1]
+#' APR=APRO(E,d)
+#' APR3=APRO(E,d3)
+#' APR3[1]-APR[1]>APR3[2]-APR[2]
+#' @references Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2023). Refining the Lorenz‐ranking of rules for
+#' claims problems on restricted domains. International Journal of Economic Theory 19(3), 526-558.
+#' @references Mirás Calvo, M.A., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2024). An algorithm to compute the average-of-awards rule for claims problems with an application to
+#' the allocation of CO\eqn{_2} emissions. Annals of Operations Research 336, 1435-1459.
+#' @references Mirás Calvo, M.A., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2022). The average-of-awards rule for claims problems. Social Choice and Welfare 59, 863-888.
+#' @references Mirás Calvo,M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez,E. (2025). On how the rules that extend the concede-and-divide principle
+#' differ for pairs of claimants. Preprint.
+#' @references Thomson, W. (2019). How to divide when there isn't enough. From Aristotle, the Talmud, and Maimonides to the axiomatics of resource allocation. Cambridge University Press.
+#' @export
+axioms=function(Rules="All",Properties="All"){
+  if(Rules[1]=="All")
+  {
+    Rules=c(AA, APRO, CE, CEA, CEL, AV, MO, PIN, PRO, RA, Talmud)
+  }
+  if(Properties[1]=="All")
+  {
+    Properties=c(1:48)
+  }
+  R=c()
+  for(i in 1:length(Rules)){
+    R[i]=Rules[[i]](0,0,1)
+  }
+
+  if(sum(R=="CD")>0)
+  {
+    warning("The concede-and-divide rule is not implemented in this function.",call.=F)
+    R=R[-which(R=="CD")]
+  }
+  if(sum(R=="DT")>0)
+  {
+    warning("The Dominguez-Thomson rule is not implemented in this function.",call.=F)
+    R=R[-which(R=="DT")]
+  }
+  if(sum(R=="RTalmud")>0)
+  {
+    warning("The reverse Talmud rule is not implemented in this function.",call.=F)
+    R=R[-which(R=="DT")]
+  }
+
+  if(length(R)==0)
+  {
+    stop("The rules introduced are not implemented in the function.",call.=F)
+  }
+  #We have added de following properties.
+  AllProp=c("Anonymity", "Continuity", "Homogeneity", "1/|N|-Truncated-claims lower bounds on awards",
+            "1/|N|-min-of-claims-and-deficit lower bounds on losses",
+            "Equal treatment of equals", "Equal treatment of equal groups", "Order preservation",
+            "Group order preservation", "Conditional null compensation", "Conditional full compensation",
+            "Linked claim-endowment monotonicity","Claim monotonicity",
+            "Population monotonicity", "Linked-endowment-population monotonicity", "Progressivity",
+            "Regressivity", "No transfer paradox", "Bounded impact of claims transfers", "Concavity",
+            "Convexity", "Endowment monotonicity",   "Order preservation under endowment variations",
+            "Order preservation under claims variations", "Minimal rights first", "Claims truncation invariance",
+            "Composition down", "Composition up", "Midpoint property", "Self-duality",
+            "Claims separability", "Claim-endowment separability", "Endowment convexity",
+            "Claim-endowment uniformity", "Endowment-population uniformity", "No advantageous transfers",
+            "Summation independence", "Consistency", "Bilateral consistency", "Converse consistency",
+            "Null claims consistency", "Null compensation consistency", "Full compensation consistency",
+            "No advantageous merging", "No advantageous splitting","Order preservation under population variations",
+            "Division invariance", "Replication invariance")
+
+  Properties=AllProp[Properties]
+  #The properties that are satisfied by each rule.
+  pro=c("Anonymity", "Continuity", "Homogeneity",
+            "Equal treatment of equals", "Equal treatment of equal groups", "Order preservation",
+            "Group order preservation",
+            "Linked claim-endowment monotonicity","Claim monotonicity",
+            "Population monotonicity", "Linked-endowment-population monotonicity", "Progressivity",
+            "Regressivity", "No transfer paradox", "Bounded impact of claims transfers", "Concavity",
+            "Convexity", "Endowment monotonicity",   "Order preservation under endowment variations",
+            "Order preservation under claims variations",
+            "Composition down", "Composition up", "Midpoint property", "Self-duality",
+            "Claims separability", "Claim-endowment separability", "Endowment convexity",
+            "Claim-endowment uniformity", "Endowment-population uniformity", "No advantageous transfers",
+            "Summation independence", "Consistency", "Bilateral consistency", "Converse consistency",
+            "Null claims consistency", "Null compensation consistency", "Full compensation consistency",
+            "No advantageous merging", "No advantageous splitting","Order preservation under population variations",
+            "Division invariance", "Replication invariance")
+  cea=c("Anonymity", "Continuity", "Homogeneity", "1/|N|-Truncated-claims lower bounds on awards",
+            "Equal treatment of equals",  "Order preservation",
+             "Conditional full compensation",
+            "Linked claim-endowment monotonicity", "Claim monotonicity",
+            "Population monotonicity", "Linked-endowment-population monotonicity",
+            "Regressivity", "No transfer paradox", "Bounded impact of claims transfers",
+            "Convexity", "Endowment monotonicity",   "Order preservation under endowment variations",
+            "Order preservation under claims variations", "Claims truncation invariance",
+            "Composition down", "Composition up",
+            "Claims separability", "Claim-endowment separability",
+            "Claim-endowment uniformity", "Endowment-population uniformity",
+             "Consistency", "Bilateral consistency", "Converse consistency",
+            "Null claims consistency", "Null compensation consistency", "Full compensation consistency",
+            "No advantageous merging","Order preservation under population variations",
+            "Division invariance", "Replication invariance")
+
+  cel=c("Anonymity", "Continuity", "Homogeneity",
+            "1/|N|-min-of-claims-and-deficit lower bounds on losses",
+            "Equal treatment of equals", "Order preservation",
+             "Conditional null compensation",
+            "Linked claim-endowment monotonicity", "Claim monotonicity",
+            "Population monotonicity", "Linked-endowment-population monotonicity", "Progressivity",
+            "No transfer paradox", "Bounded impact of claims transfers", "Concavity",
+            "Endowment monotonicity",   "Order preservation under endowment variations",
+            "Order preservation under claims variations", "Minimal rights first",
+            "Composition down", "Composition up",
+            "Claims separability",
+            "Claim-endowment uniformity", "Endowment-population uniformity",
+             "Consistency", "Bilateral consistency", "Converse consistency",
+            "Null claims consistency", "Null compensation consistency", "Full compensation consistency",
+            "No advantageous splitting","Order preservation under population variations",
+            "Division invariance", "Replication invariance")
+  av=c("Anonymity", "Continuity", "Homogeneity",
+        "Equal treatment of equals", "Order preservation",
+        "Linked claim-endowment monotonicity", "Claim monotonicity",
+        "Population monotonicity", "Linked-endowment-population monotonicity",
+        "No transfer paradox", "Bounded impact of claims transfers",
+        "Endowment monotonicity",   "Order preservation under endowment variations",
+        "Order preservation under claims variations",
+        "Converse consistency",
+        "Null claims consistency", "Null compensation consistency", "Full compensation consistency",
+        "Order preservation under population variations","Midpoint property", "Self-duality")
+  ce=c("Anonymity", "Continuity", "Homogeneity", "1/|N|-Truncated-claims lower bounds on awards",
+            "Equal treatment of equals", "Order preservation",
+            "Linked claim-endowment monotonicity",  "Claim monotonicity",
+            "Population monotonicity", "Linked-endowment-population monotonicity", "No transfer paradox", "Bounded impact of claims transfers",
+            "Endowment monotonicity",
+            "Midpoint property",
+            "Claims separability", "Claim-endowment separability",
+            "Claim-endowment uniformity", "Endowment-population uniformity", "Consistency", "Bilateral consistency", "Converse consistency",
+            "Null claims consistency", "Null compensation consistency", "Full compensation consistency",
+            "Division invariance", "Replication invariance")
+  talmud=c("Anonymity", "Continuity", "Homogeneity", "1/|N|-Truncated-claims lower bounds on awards",
+            "1/|N|-min-of-claims-and-deficit lower bounds on losses",
+            "Equal treatment of equals", "Order preservation",
+            "Linked claim-endowment monotonicity", "Claim monotonicity",
+            "Population monotonicity", "Linked-endowment-population monotonicity",
+             "No transfer paradox", "Bounded impact of claims transfers","Endowment monotonicity",   "Order preservation under endowment variations",
+            "Order preservation under claims variations", "Minimal rights first", "Claims truncation invariance",
+             "Midpoint property", "Self-duality",
+            "Claims separability", "Claim-endowment separability",
+            "Claim-endowment uniformity", "Endowment-population uniformity",  "Consistency", "Bilateral consistency", "Converse consistency",
+            "Null claims consistency", "Null compensation consistency", "Full compensation consistency",
+            "Order preservation under population variations","Division invariance", "Replication invariance")
+
+  pin=c("Anonymity", "Continuity", "Homogeneity", "1/|N|-Truncated-claims lower bounds on awards",
+            "Equal treatment of equals", "Order preservation",
+            "Linked claim-endowment monotonicity","Claim monotonicity",
+            "Population monotonicity", "Linked-endowment-population monotonicity", "No transfer paradox", "Bounded impact of claims transfers",
+            "Endowment monotonicity",   "Order preservation under endowment variations",
+            "Order preservation under claims variations",
+             "Midpoint property",
+            "Claims separability", "Claim-endowment separability",
+            "Claim-endowment uniformity", "Endowment-population uniformity", "Consistency", "Bilateral consistency", "Converse consistency",
+            "Null claims consistency", "Null compensation consistency", "Full compensation consistency",
+            "Order preservation under population variations","Division invariance", "Replication invariance")
+
+  ra=c("Anonymity", "Continuity", "Homogeneity", "1/|N|-Truncated-claims lower bounds on awards",
+            "1/|N|-min-of-claims-and-deficit lower bounds on losses",
+            "Equal treatment of equals", "Order preservation",
+            "Linked claim-endowment monotonicity", "Claim monotonicity",
+            "Population monotonicity", "Linked-endowment-population monotonicity", "No transfer paradox", "Bounded impact of claims transfers", "Endowment monotonicity",  "Order preservation under endowment variations",
+            "Order preservation under claims variations", "Minimal rights first", "Claims truncation invariance",
+            "Midpoint property", "Self-duality",
+            "Null claims consistency", "Null compensation consistency", "Full compensation consistency",
+            "Order preservation under population variations")
+  mo=c("Anonymity", "Continuity", "Homogeneity", "1/|N|-Truncated-claims lower bounds on awards",
+            "Equal treatment of equals","Order preservation",
+            "Linked claim-endowment monotonicity", "Claim monotonicity",
+            "Population monotonicity", "No transfer paradox", "Bounded impact of claims transfers",  "Endowment monotonicity",  "Order preservation under endowment variations",
+            "Order preservation under claims variations", "Minimal rights first", "Claims truncation invariance",
+            "Null claims consistency", "Null compensation consistency", "Full compensation consistency",
+            "Order preservation under population variations")
+  apro=c("Anonymity", "Continuity", "Homogeneity", "1/|N|-Truncated-claims lower bounds on awards",
+            "1/|N|-min-of-claims-and-deficit lower bounds on losses",
+            "Equal treatment of equals",  "Order preservation",
+            "Linked claim-endowment monotonicity","Claim monotonicity", "No transfer paradox", "Bounded impact of claims transfers",  "Endowment monotonicity",   "Order preservation under endowment variations",
+             "Minimal rights first", "Claims truncation invariance",
+            "Midpoint property", "Self-duality",
+            "Null claims consistency")
+
+
+  aa=c("Anonymity", "Continuity", "Homogeneity", "1/|N|-Truncated-claims lower bounds on awards",
+            "1/|N|-min-of-claims-and-deficit lower bounds on losses",
+            "Equal treatment of equals", "Order preservation",
+            "Linked claim-endowment monotonicity", "Claim monotonicity",
+            "Population monotonicity", "Linked-endowment-population monotonicity", "No transfer paradox", "Bounded impact of claims transfers", "Endowment monotonicity",   "Order preservation under endowment variations",
+            "Order preservation under claims variations", "Minimal rights first", "Claims truncation invariance",
+             "Midpoint property", "Self-duality",
+            "Null claims consistency", "Null compensation consistency", "Full compensation consistency",
+            "Order preservation under population variations")
+
+
+  #Table with rules and properties.
+  Properties=Properties[Properties!=0]
+  P=matrix(0,length(Properties),length(R))
+  colnames(P)=R
+  rownames(P)=Properties
+  for(i in 1:length(R)){
+    if(R[i]=="PRO"){#Properties satisfied by the proportional rule.
+      for(j in 1:length(Properties)){
+        if(sum(Properties[j]==pro)>0){P[j,i]=1 }
+      }
+    }
+    if(R[i]=="APRO"){#Properties satisfied by the adjusted proportional rule.
+      for(j in 1:length(Properties)){
+        if(sum(Properties[j]==apro)>0){P[j,i]=1}
+      }
+    }
+    if(R[i]=="MO"){#Properties satisfied by the minimal overlap rule.
+        for(j in 1:length(Properties)){
+          if(sum(Properties[j]==mo)>0){P[j,i]=1}
+        }
+    }
+    if(R[i]=="CEA"){#Properties satisfied by the CEA rule.
+      for(j in 1:length(Properties)){
+        if(sum(Properties[j]==cea)>0){P[j,i]=1}
+      }
+    }
+    if(R[i]=="CEL"){#Properties satisfied by the CEL rule.
+      for(j in 1:length(Properties)){
+        if(sum(Properties[j]==cel)>0){P[j,i]=1}
+      }
+    }
+    if(R[i]=="AV"){#Properties satisfied by the average rule.
+      for(j in 1:length(Properties)){
+        if(sum(Properties[j]==av)>0){P[j,i]=1}
+      }
+    }
+    if(R[i]=="CE"){#Properties satisfied by the CE rule.
+      for(j in 1:length(Properties)){
+        if(sum(Properties[j]==ce)>0){P[j,i]=1}
+      }
+    }
+    if(R[i]=="PIN"){#Properties satisfied by the Piniles' rule.
+      for(j in 1:length(Properties)){
+        if(sum(Properties[j]==pin)>0){P[j,i]=1}
+      }
+    }
+    if(R[i]=="Talmud"){#Properties satisfied by the Talmud rule.
+      for(j in 1:length(Properties)){
+        if(sum(Properties[j]==talmud)>0){P[j,i]=1}
+      }
+    }
+    if(R[i]=="RA"){#Properties satisfied by the random arrival rule.
+      for(j in 1:length(Properties)){
+        if(sum(Properties[j]==ra)>0){P[j,i]=1}
+      }
+    }
+    if(R[i]=="AA"){#Properties satisfied by the average-of-awards rule.
+        for(j in 1:length(Properties)){
+          if(sum(Properties[j]==aa)>0) {P[j,i]=1}
+        }
+    }
+  }
+  return(P)
+}

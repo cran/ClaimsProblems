@@ -11,9 +11,9 @@ deviationindex(E, d, R, S)
 
 \item{d}{The vector of claims.}
 
-\item{R}{A rule : AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, Talmud.}
+\item{R}{A rule : AA, APRO, CE, CEA, CEL, AV, DT, MO, PIN, PRO, RA, Talmud, RTalmud.}
 
-\item{S}{A rule: AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, Talmud.}
+\item{S}{A rule: AA, APRO, CE, CEA, CEL, AV, DT, MO, PIN, PRO, RA, Talmud, RTalmud.}
 }
 \value{
 The deviation index and the signed deviation index of a rule for a claims problem.
@@ -22,29 +22,25 @@ The deviation index and the signed deviation index of a rule for a claims proble
 This function returns the deviation index and the signed deviation index for a rule with respect to another rule.
 }
 \details{
-Let \eqn{E> 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{d} the vector of claims
-with \eqn{d\ge 0} and such that \eqn{D=\sum_{i=1}^{n} d_i\ge E}{D=\sum di \ge E}, the sum of claims \eqn{D} exceeds the endowment.
+Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{E\ge 0} the endowment to be divided and \eqn{d\in \mathbb{R}_+^N} the vector of claims
+such that \eqn{\sum_{i \in N} d_i\ge E}.
 
-Rearrange the claims from small to large, \eqn{0 \le d_1 \le...\le d_n}{%
-0 \le d1 \le...\le dn}.
-The signed deviation index of the rule \eqn{S} with respect to the rule \eqn{R} for the problem \eqn{(E,d)}, denoted by \eqn{I(R(E,d),S(E,d))}, is
+Rearrange the claims from small to large, \eqn{0 \le d_1 \le...\le d_n}.
+The signed deviation index of the rule \eqn{\mathcal{S}} with respect to the rule \eqn{\mathcal{R}} for the problem \eqn{(E,d)}, denoted by \eqn{I(\mathcal{R}(E,d),\mathcal{S}(E,d))}, is
 the ratio of the area that lies between the identity line and the cumulative curve over the total area under the identity line.
 
-Let \eqn{R_0=0}{R0=0} and \eqn{S_0=0}{S=0}. For each \eqn{k=1,\dots,n} define
-\eqn{X_k=\frac{1}{E} \sum_{j=0}^{k} R_j}{Xk=(R0+\dots+Rk)/E} and
-\eqn{Y_k=\frac{1}{E} \sum_{j=0}^{k} S_j}{Yk=(S0+\dots+Sk)/E}. Then
-\deqn{I(R(E,d),S(E,d))=1-\sum_{k=1}^{n}(X_{k}-X_{k-1})(Y_{k}+Y_{k-1}).}{I(R(E,d),S(E,d))=1-\sum (Xk-X(k-1))(Yk+Y(k-1)) where the sum goes from k=0 to n.}
- In general  \eqn{-1 \le I(R(E,d),S(E,d)) \le 1}.
+Let \eqn{\mathcal{R}_0=0} and \eqn{\mathcal{S}_0=0}. For each \eqn{k=1,\dots,n} define
+\eqn{X_k=\frac{1}{E} \sum_{j=0}^{k}\mathcal{R}_j} and \eqn{Y_k=\frac{1}{E} \sum_{j=0}^{k} \mathcal{S}_j}. Then,
+\deqn{I(\mathcal{R}(E,d),\mathcal{S}(E,d))=1-\sum_{k=1}^{n}\Bigl(X_{k}-X_{k-1}\Bigr)\Bigl(Y_{k}+Y_{k-1}\Bigr).}
+ In general  \eqn{-1 \le I(\mathcal{R}(E,d),\mathcal{S}(E,d)) \le 1}.
 
-The deviation index of the rule \eqn{S} with respect to the rule \eqn{R} for the problem \eqn{(E,d)}, denoted by \eqn{I^{+}(R(E,d),S(E,d))}{I+(R(E,d),S(E,d))}, is
-the ratio of the area between the line of the cumulative sum of the distribution proposed by the rule \eqn{R} and the cumulative curve over the area under the line \eqn{x=y}.
+The deviation index of the rule \eqn{\mathcal{S}} with respect to the rule \eqn{\mathcal{R}} for the problem \eqn{(E,d)}, denoted by \eqn{I^{+}(\mathcal{R}(E,d),\mathcal{S}(E,d))}, is
+the ratio of the area between the line of the cumulative sum of the distribution proposed by the rule \eqn{\mathcal{R}} and the cumulative curve over the area under the line \eqn{x=y}.
 
-In general  \eqn{0 \le I^{+}(R(E,d),S(E,d)) \le 1}{0 \le I+(R(E,d),S(E,d)) \le 1}.
+In general  \eqn{0 \le I^{+}(\mathcal{R}(E,d),\mathcal{S}(E,d)) \le 1}.
 
-The proportionality deviation index is the deviation index when \eqn{R = PRO}. The proportionality deviation index of the proportional rule is zero for all claims problems.
-The signed proportionality deviation index is the signed deviation index with \eqn{R = PRO}.
-
-\eqn{proportionalityindex} function of version 0.1.0 returned the the signed proportionality index.
+The proportionality deviation index is the deviation index when \eqn{\mathcal{R} = \text{PRO}}. The proportionality deviation index of the proportional rule is zero for all claims problems.
+The signed proportionality deviation index is the signed deviation index with \eqn{\mathcal{R} = \text{PRO}}.
 }
 \examples{
 E=10
@@ -56,10 +52,10 @@ deviationindex(E,d,R,S)
 deviationindex(E,d,PRO,PRO)
 }
 \references{
-Ceriani, L. and Verme, P. (2012). The origins of the Gini index: extracts from Variabilitá e Mutabilitá (1912) by Corrado Gini. The Journal of Economic Inequality, 10(3), 421-443.
+Ceriani, L. and Verme, P. (2012). The origins of the Gini index: extracts from Variabilitá e Mutabilitá (1912) by Corrado Gini. The Journal of Economic Inequality 10(3), 421-443.
 
-Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez, E. (2022). Deviation from proportionality and Lorenz-domination for claims problems. Rev Econ Design. \doi{10.1007/s10058-022-00300-y}
+Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez, E. (2023). Deviation from proportionality and Lorenz-domination for claims problems. Review of Economic Design 27, 439-467.
 }
 \seealso{
-\link{indexgpath}, \link{cumawardscurve}, \link{lorenzcurve}, \link{giniindex}, \link{lorenzdominance}, \link{allrules}.
+\link{allrules}, \link{cumawardscurve}, \link{giniindex}, \link{indexgpath}, \link{lorenzcurve}, \link{lorenzdominance}.
 }

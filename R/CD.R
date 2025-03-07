@@ -3,17 +3,15 @@
 #' @param E The endowment.
 #' @param d The vector of two claims.
 #' @param name A logical value.
-#' @return The awards vector selected by the CD rule. If name = TRUE, the name of the function (CD) as a character string.
-#' @details Let \eqn{E\ge 0} be the endowment to be divided and \eqn{d=(d_1,d_2)\in \mathcal{R}^2}{%
-#' d=(d1,d2)} the vector of claims
-#' with \eqn{d\ge 0} and such that the sum of the two claims exceeds the endowment \eqn{d_1+d_2 \ge E}{d1+d2\ge E}.
+#' @return The awards vector selected by the CD rule. If \code{name = TRUE}, the name of the function (CD) as a character string.
+#' @details Let \eqn{E\ge 0} be the endowment to be divided and \eqn{d=(d_1,d_2)\in \mathbb{R}_+^2}
+#'  the vector of claims such that  \eqn{d_1+d_2 \ge E}.
 #'
-#' The concede-and-divide rule first assigns to each of the two claimants the difference between the endowment and the other agent’s claim (or 0 if this
-#' difference is negative), and divides the remainder equally.
-#' \deqn{CD_1(E,d)=\max\{E-d_2,0\}+\frac{E-\max\{E-d_1,0\}-\max\{E-d_2,0\}}{2}}{CD1(E,d) = max\{E-d2,0\} + 1/2(E-max\{E-d1,0\}-max\{E-d2,0\})}
-#'  \deqn{CD_2(E,d)=\max\{E-d_1,0\}+\frac{E-\max\{E-d_1,0\}-\max\{E-d_2,0\}}{2}}{CD2(E,d) = max\{E-d1,0\} + 1/2(E-max\{E-d1,0\}-max\{E-d2,0\})}
+#' The concede-and-divide rule (CD) first assigns to each of the two claimants the difference between the endowment and the other agent’s claim (or 0 if this
+#' difference is negative), and divides the remainder equally. That is, for each \eqn{i\in \{1,2\}},
+#' \deqn{\text{CD}_i(E,d)=\max\{E-d_j,0\}+\frac{E-\max\{E-d_i,0\}-\max\{E-d_j,0\}}{2}.}
 #' Several rules are extensions of the concede-and-divide rule to general populations: AA, APRO, MO, RA, and Talmud.
-#' @seealso \link{allrules}, \link{pathawards}, \link{AA}, \link{APRO}, \link{MO}, \link{RA}, \link{Talmud}
+#' @seealso \link{allrules}, \link{AA}, \link{APRO}, \link{MO}, \link{pathawards}, \link{RA}, \link{Talmud}.
 #' @examples
 #' E=10
 #' d=c(7,8)
@@ -24,8 +22,9 @@
 #' MO(E,d)
 #' APRO(E,d)
 #' AA(E,d)
-#' @references Aumann, R. and Maschler, M., (1985). Game theoretic analysis of a bankruptcy problem from the Talmud. J. Econ. Theory 36, 195–213.
-#' @references Mirás Calvo, M. Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez, E. (2021).  Analyzing rules that extend the concede-and-divide principle. Preprint.
+#' @references Aumann, R. and Maschler, M., (1985). Game theoretic analysis of a bankruptcy problem from the Talmud. Journal of Economic Theory 36, 195–213.
+#' @references Mirás Calvo,M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez,E. (2025). On how the rules that extend the concede-and-divide principle
+#' differ for pairs of claimants. Preprint.
 #' @references Thomson, W. (2019). How to divide when there isn't enough. From Aristotle, the Talmud, and Maimonides to the axiomatics of resource allocation. Cambridge University Press.
 #' @export
 

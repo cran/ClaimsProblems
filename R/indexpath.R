@@ -2,7 +2,7 @@ indexpath = function(d, Rules, col = NULL, points = 201, legend = TRUE) {
   .Deprecated("indexgpath")
   # Default colors
   if (is.null(col)) {
-    col=c("red","blue","green","yellow","pink","coral4","darkgray","burlywood3","black","darkorange","darkviolet")
+    col=c("red","blue","green","yellow","pink","coral4","orange","darkgray","burlywood3","black","darkorange","darkviolet")
   }
   #
   n = length(d) #The number of claims

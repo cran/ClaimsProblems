@@ -3,21 +3,22 @@
 #' @param E The endowment.
 #' @param d The vector of claims.
 #' @param name A logical value.
-#' @return The awards vector selected by the PIN rule. If name = TRUE, the name of the function (PIN) as a character string.
-#' @details Let \eqn{E\ge 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{d} the vector of claims
-#' with \eqn{d\ge 0} and such that \eqn{D=\sum_{i=1}^{n} d_i\ge E}{D=\sum di \ge E}, the sum of claims \eqn{D} exceeds the endowment.
+#' @return The awards vector selected by the PIN rule. If \code{name = TRUE}, the name of the function (PIN) as a character string.
+#' @details Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{E\ge 0} the endowment to be divided and \eqn{d\in \mathbb{R}_+^N} the vector of claims
+#' such that \eqn{D=\sum_{i \in N} d_i\ge E}.
 #'
-#' The Piniles' rule coincides with the constrained equal awards rule (CEA) applied to
+#' The Piniles' rule (PIN) coincides with the constrained equal awards rule (CEA) applied to
 #' the problem \eqn{(E, d/2)} if the endowment is less or equal than the half-sum of the claims, \eqn{D/2}.
-#' Otherwise it assigns to each claimant \eqn{i} half of the claim, \eqn{d_i/2}{di/2} and,
-#' then, it distributes the remainder with the CEA rule. Therefore:
+#' Otherwise it assigns to each claimant \eqn{i} half of the claim, \eqn{d_i/2}, and,
+#' then, it distributes the remainder with the CEA rule. Therefore, for each \eqn{i\in N},
 #'
-#' If \eqn{E \le \frac{D}{2}}{E\le D/2} then,
-#' \deqn{PIN(E,d)  = CEA(E,d/2).}{PIN(E,d)=CEA(E,d/2).}
+#' \deqn{\text{PIN}_i(E,d) = \begin{cases}
+#' \min\{\frac{d_i}{2},\lambda\}      & \text{if } E\leq \tfrac{1}{2}D\\[3pt]
+#' \frac{d_i}{2}+\min\{\frac{d_i}{2},\lambda\} & \text{if }  E \geq \tfrac{1}{2}D
+#' \end{cases},}
 #'
-#' If \eqn{E \ge \frac{D}{2}}{E\ge D/2} then,
-#' \deqn{PIN(E,d)=d/2+CEA(E-D/2,d/2).}{PIN(E,d)=d/2+CEA(E-D/2,d/2).}
-#' @seealso \link{allrules}, \link{CEA}, \link{Talmud}
+#' where \eqn{\lambda \geq 0} is chosen such that  \eqn{\underset{i\in N}{\sum}	\text{PIN}_i(E,d)=E}.
+#' @seealso \link{allrules}, \link{axioms}, \link{CEA}, \link{Talmud}.
 #' @examples
 #' E=10
 #' d=c(2,4,7,8)

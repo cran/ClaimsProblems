@@ -2,7 +2,7 @@
 % Please edit documentation in R/AA.R
 \name{AA}
 \alias{AA}
-\title{Average of awards rule}
+\title{Average-of-awards rule}
 \usage{
 AA(E, d, name = FALSE)
 }
@@ -14,45 +14,49 @@ AA(E, d, name = FALSE)
 \item{name}{A logical value.}
 }
 \value{
-The awards vector selected by the AA rule. If name = TRUE, the name of the function (AA) as a character string.
+The awards vector selected by the AA rule. If \code{name = TRUE}, the name of the function (AA) as a character string.
 }
 \description{
-This function returns the awards vector assigned by the average of awards rule (AA) to a claims problem.
+This function returns the awards vector assigned by the average-of-awards rule (AA) to a claims problem.
 }
 \details{
-Let \eqn{E\ge 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{d} the vector of claims
-with \eqn{d\ge 0} and such that \eqn{\sum_{i=1}^{n} d_i\ge E,\;}{} the sum of claims exceeds the endowment.
+Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{E\ge 0} the endowment to be divided and \eqn{d\in \mathbb{R}_+^N} the vector of claims
+such that \eqn{\sum_{i \in N} d_i\ge E}.
 
-A vector \eqn{x=(x_1,\dots,x_n)}{x=(x1,...,xn)} is an awards vector for the claims problem \eqn{(E,d)} if \eqn{0\le x \le d}
-and satisfies the balance requirement, that is, \eqn{\sum_{i=1}^{n}x_i=E}{x1+\dots+xn=E} the sum of its coordinates is equal to \eqn{E}.
+A vector \eqn{x=(x_1,\dots,x_n)} is an awards vector for the claims problem \eqn{(E,d)} if \eqn{0\le x \le d}
+and satisfies the balance requirement, that is, \eqn{\sum_{i=1}^{n}x_i=E}.
 Let \eqn{X(E,d)} be the set of awards vectors for \eqn{(E,d)}.
 
-The average of awards rule assigns to each claims problem \eqn{(E,d)}
+The average-of-awards rule (AA) assigns to each claims problem \eqn{(E,d)}
 the expectation of the uniform distribution defined over the set of awards vectors, that is,
 the centroid of \eqn{X(E,d)}.
 
-Let \eqn{\mu} be the (n-1)-dimensional Lebesgue measure and \eqn{V(E,d)=\mu (X(E,d))} the measure (volume) of the set of awards \eqn{X(E,d)}.
-The average of awards rule assigns to each problem \eqn{(E,d)} the awards vector given by:
-\deqn{AA(E,d)=\frac{1}{V(E,d)}\int_{X(E,d)} x d\mu}{AA(E,d)=1/V(E,d) ∫xd\mu, where the integral is taken over X(E,d).}
+Let \eqn{\mu} be the \eqn{(n-1)}-dimensional Lebesgue measure and \eqn{V(E,d)=\mu (X(E,d))} be the
+measure (volume) of the set of awards \eqn{X(E,d)}. The average-of-awards rule assigns to each claims problem \eqn{(E,d)} the awards vector given by:
+\deqn{\text{AA}(E,d)=\frac{1}{V(E,d)}\int_{X(E,d)} x d\mu.}
 
-The average of awards rule corresponds to the core-center of the associated coalitional (pessimistic) game.
+The average-of-awards rule corresponds to the core-center solution of the associated coalitional (pessimistic) game.
+
+The function AA is programmed with the algorithm of Mirás Calvo et al. (2024b), which is an improved version of the algorithm of Mirás Calvo et al. (2024a).
 }
 \examples{
 E=10
 d=c(2,4,7,8)
 AA(E,d)
-#The average of awards rule is self-dual: AA(E,d)=d-AA(D-E,d)
+#The average-of-awards rule is self-dual: AA(E,d)=d-AA(D-E,d)
 D=sum(d)
 d-AA(D-E,d)
 }
 \references{
-Gonzalez-Díaz, J. and Sánchez-Rodríguez, E. (2007). A natural selection from the core of a TU game: the core-center. International Journal of Game Theory, 36(1), 27-46.
+Gonzalez-Díaz, J. and Sánchez-Rodríguez, E. (2007). A natural selection from the core of a TU game: the core-center. International Journal of Game Theory 36(1), 27-46.
 
-Mirás Calvo, M.Á., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2022). The average-of-awards rule for claims problems. Soc Choice Welf. \doi{10.1007/s00355-022-01414-6}
+Mirás Calvo, M.A., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2024a). An algorithm to compute the average-of-awards rule for claims problems with an application to
+the allocation of CO\eqn{_2} emissions. Annals of Operations Research 336, 1435-1459.
 
-Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2020). An algorithm to compute the core-center rule of a claims problem with an application to
-the allocation of CO2 emissions. Working paper.
+Mirás Calvo, M.A., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2024b). On properties of the set of awards vectors for a claims problem. TOP 32, 137-167.
+
+Mirás Calvo, M.A., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2022). The average-of-awards rule for claims problems. Social Choice and Welfare 59, 863-888.
 }
 \seealso{
-\link{allrules}, \link{CD}, \link{setofawards}, \link{coalitionalgame}
+\link{allrules}, \link{axioms}, \link{CD}, \link{coalitionalgame},  \link{setofawards}, \link{volume}.
 }

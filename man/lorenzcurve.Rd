@@ -11,12 +11,12 @@ lorenzcurve(E, d, Rules, col = NULL, legend = TRUE)
 
 \item{d}{The vector of claims.}
 
-\item{Rules}{The rules: AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, Talmud.}
+\item{Rules}{The rules: AA, APRO, CE, CEA, AV, DT, MO, PIN, PRO, RA, Talmud, RTalmud.}
 
-\item{col}{The colours. If col=NULL then the sequence of default colors is:
-c("red", "blue", "green", "yellow", "pink", "coral4", "darkgray", "burlywood3", "black", "darkorange", "darkviolet").}
+\item{col}{The colours. If \code{col=NULL} then the sequence of default colors is:
+c("red", "blue", "green", "yellow", "pink", "orange", "coral4", "darkgray", "burlywood3", "black", "darkorange", "darkviolet").}
 
-\item{legend}{A logical value. The colour legend is shown if legend=TRUE.}
+\item{legend}{A logical value. The colour legend is shown if \code{legend=TRUE}.}
 }
 \value{
 The graphical representation of the Lorenz curve of a rule (or several rules) for a claims problem.
@@ -25,16 +25,15 @@ The graphical representation of the Lorenz curve of a rule (or several rules) fo
 This function returns the Lorenz curve of any rule for a claims problem.
 }
 \details{
-Let \eqn{E> 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{d} the vector of claims
-with \eqn{d\ge 0} and such that the sum of claims \eqn{D=\sum_{i=1}^{n} d_i\ge E}{D=\sum di} exceeds the endowment.
+Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{E\ge 0} the endowment to be divided and \eqn{d\in \mathbb{R}_+^N} the vector of claims
+such that \eqn{\sum_{i \in N} d_i\ge E}.
 
-Rearrange the claims from small to large, \eqn{0 \le d_1 \le...\le d_n}{%
-0 \le d1 \le...\le dn}. The Lorenz curve represents the proportion of the awards given to each subset of claimants by a specific rule \eqn{R}  as a function of the
+Rearrange the claims from small to large, \eqn{0 \le d_1 \le...\le d_n}.
+The Lorenz curve represents the proportion of the awards given to each subset of claimants by a specific rule \eqn{\mathcal{R}}  as a function of the
 cumulative distribution of population.
 
-The Lorenz curve of a rule \eqn{R} for the claims problem \eqn{(E,d)} is the polygonal path connecting the \eqn{n+1} points
-\deqn{(0,0), (\frac{1}{n},\frac{R_1(E,d)}{E}),\dots,(\frac{n-1}{n},\frac{\sum_{i=1}^{n-1}R_i(E,d)}{E}),(1,1)}{%
-(0,0) , (1/n,R1(E,d)/E) , (2/n , (R1(E,d)+R2(E,d))/E ,\dots , (1,1)}
+The Lorenz curve of a rule \eqn{\mathcal{R}} for the claims problem \eqn{(E,d)} is the polygonal path connecting the \eqn{n+1} points,
+\deqn{(0,0), \Bigl(\frac{1}{n},\frac{\mathcal{R}_1(E,d)}{E}\Bigr),\dots,\Bigl(\frac{n-1}{n},\frac{\sum_{i=1}^{n-1}\mathcal{R}_i(E,d)}{E}\Bigl),(1,1).}
 Basically, it represents the cumulative percentage of the endowment assigned by the rule to each cumulative percentage of claimants.
 }
 \examples{
@@ -45,10 +44,13 @@ col=c("red","blue","green","yellow","pink")
 lorenzcurve(E,d,Rules,col)
 }
 \references{
-Lorenz, M. O. (1905). Methods of measuring the concentration of wealth. Publications of the American statistical association, 9(70), 209-219.
+Lorenz, M. O. (1905). Methods of measuring the concentration of wealth. Publications of the American statistical association 9(70), 209-219.
 
-Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez, E. (2022). Deviation from proportionality and Lorenz-domination for claims problems. Rev Econ Design. \doi{10.1007/s10058-022-00300-y}
+Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez, E. (2023a). Deviation from proportionality and Lorenz-domination for claims problems. Review of Economic Design 27, 439-467.
+
+Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2023b). Refining the Lorenz‐ranking of rules for
+claims problems on restricted domains. International Journal of Economic Theory 19(3), 526-558.
 }
 \seealso{
-\link{giniindex}, \link{cumawardscurve}, \link{deviationindex}, \link{indexgpath}, \link{lorenzdominance}.
+\link{cumawardscurve}, \link{deviationindex}, \link{giniindex}, \link{indexgpath}, \link{lorenzdominance}.
 }

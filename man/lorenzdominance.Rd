@@ -11,34 +11,34 @@ lorenzdominance(E, d, Rules, Info = FALSE)
 
 \item{d}{The vector of claims.}
 
-\item{Rules}{The two rules: AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, Talmud.}
+\item{Rules}{The two rules: AA, APRO, CE, CEA, CEL, AV, DT, MO, PIN, PRO, RA, Talmud, RTalmud.}
 
 \item{Info}{A logical value.}
 }
 \value{
-If Info = FALSE, the Lorenz-dominance relation between the awards vectors selected by both rules.
-If both awards vectors are equal then cod = 2. If the awards vectors are not Lorenz-comparable then cod = 0.
-If the awards vector  selected by the first rule Lorenz-dominates the awards vector  selected by the second rule then cod = 1; otherwise cod = -1.
-If Info = TRUE, it also gives the corresponding cumulative sums.
+If \code{Info = FALSE}, the Lorenz-dominance relation between the awards vectors selected by both rules.
+If both awards vectors are equal then \code{cod = 2}. If the awards vectors are not Lorenz-comparable then \code{cod = 0}.
+If the awards vector  selected by the first rule Lorenz-dominates the awards vector  selected by the second rule then \code{cod = 1}; otherwise \code{cod = -1}.
+If \code{Info = TRUE}, it also gives the corresponding cumulative sums.
 }
 \description{
 This function checks whether or not the awards assigned by two rules to a claims problem are Lorenz-comparable.
 }
 \details{
-Let \eqn{E\ge 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{d} the vector of claims
-with \eqn{d\ge 0} and such that \eqn{\sum_{i=1}^{n} d_i\ge E,\;}{} the sum of claims exceeds the endowment.
+Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{E\ge 0} the endowment to be divided and \eqn{d\in \mathbb{R}_+^N} the vector of claims
+such that \eqn{\sum_{i \in N} d_i\ge E}.
 
-A vector \eqn{x=(x_1,\dots,x_n)}{x=(x1,...,xn)} is an awards vector for the claims problem \eqn{(E,d)} if \eqn{0\le x \le d}
-and satisfies the balance requirement, that is, \eqn{\sum_{i=1}^{n}x_i=E}{x1+\dots+xn=E} the sum of its coordinates is equal to \eqn{E}.
-Let \eqn{X(E,d)} be the set of awards vectors for \eqn{(E,d)}.
+A vector \eqn{x=(x_1,\dots,x_n)} is an awards vector for the claims problem \eqn{(E,d)} if \eqn{0\le x \le d}
+and satisfies the balance requirement, that is, \eqn{\sum_{i=1}^{n}x_i=E}.
+A rule is a function that assigns to each claims problem \eqn{(E,d)} an awards vector.
 
-Given a claims problem \eqn{(E,d)}, in order to compare a pair of awards vectors \eqn{x,y\in X(E,d)}{x,y in X(E,d)} with the Lorenz criterion,
+Given a claims problem \eqn{(E,d)}, in order to compare a pair of awards vectors \eqn{x,y\in X(E,d)} with the Lorenz criterion,
 first one has to rearrange the coordinates of each allocation in a non-decreasing order. Then we say that \eqn{x} Lorenz-dominates \eqn{y} (or, that \eqn{y} is Lorenz-dominated by \eqn{x})
 if all the cumulative sums of the rearranged coordinates are greater with \eqn{x} than with \eqn{y}. That is,
-\eqn{x} Lorenz-dominates \eqn{y} if for each \eqn{k=1,\dots,n-1} we have that
-\deqn{\sum_{j=1}^{k}x_j \geq \sum_{j=1}^{k}y_j}{x1+\dots+xk \ge y1+\dots+yk.}
+\eqn{x} Lorenz-dominates \eqn{y} if for each \eqn{k=1,\dots,n-1},
+\deqn{\sum_{j=1}^{k}x_j \geq \sum_{j=1}^{k}y_j.}
 
-Let \eqn{R} and \eqn{R'} be two rules. We say that \eqn{R} Lorenz-dominates \eqn{R'} if \eqn{R(E,d)} Lorenz-dominates \eqn{R'(E,d)} for all \eqn{(E,d)}.
+Let \eqn{\mathcal{R}} and \eqn{\mathcal{S}} be two rules, we say that \eqn{\mathcal{R}} Lorenz-dominates \eqn{\mathcal{S}} if \eqn{\mathcal{R}(E,d)} Lorenz-dominates \eqn{\mathcal{S}(E,d)} for all \eqn{(E,d)}.
 }
 \examples{
 E=10
@@ -47,12 +47,13 @@ Rules=c(AA,CEA)
 lorenzdominance(E,d,Rules)
 }
 \references{
-Lorenz, M. O. (1905). Methods of measuring the concentration of wealth. Publications of the American statistical association, 9(70), 209-219.
+Lorenz, M. O. (1905). Methods of measuring the concentration of wealth. Publications of the American statistical association 9(70), 209-219.
 
-Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez, E. (2022). Deviation from proportionality and Lorenz-domination for claims problems. Rev Econ Design. \doi{10.1007/s10058-022-00300-y}
+Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez, E. (2023a). Deviation from proportionality and Lorenz-domination for claims problems. Review of Economic Design 27, 439-467.
 
-Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2021). The adjusted proportional and the minimal overlap rules restricted to the lower-half, higher-half, and middle domains. Working paper 2021-02, ECOBAS.
+Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2023b). Refining the Lorenz‐ranking of rules for
+claims problems on restricted domains. International Journal of Economic Theory 19(3), 526-558
 }
 \seealso{
-\link{cumawardscurve}, \link{deviationindex}, \link{indexgpath}, \link{lorenzcurve}, \link{giniindex}.
+\link{cumawardscurve}, \link{deviationindex}, \link{giniindex}, \link{indexgpath}, \link{lorenzcurve}.
 }

@@ -3,34 +3,30 @@
 #' @param E The endowment.
 #' @param d The vector of claims.
 #' @param name A logical value.
-#' @return The awards vector selected by the DT rule. If name = TRUE, the name of the function (DT) as a character string.
-#' @details Let \eqn{E\ge 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{d} the vector of claims
-#' with \eqn{d\ge 0} and such that \eqn{\sum_{i=1}^{n} d_i\ge E,\;}{} the sum of claims exceeds the endowment.
+#' @return The awards vector selected by the DT rule. If \code{name = TRUE}, the name of the function (DT) as a character string.
+#' @details Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{E\ge 0} the endowment to be divided and \eqn{d\in \mathbb{R}_+^N} the vector of claims
+#' such that \eqn{\sum_{i \in N} d_i\ge E}.
 #'
-#' The truncated claim of claimant \eqn{i} in \eqn{(E,d)} is the minimum of the claim and the endowment.
-#' \deqn{t_i(E,d)=\min\{d_i,E\},\ i=1,\dots,n}{ti = min\{di,E\}, i=1,\dots,n}
-#' Let \eqn{t(E,d)=(m_1(E,d),\dots,m_n(E,d))}{t(E,d)=(t1,\dots,tn)} be the vector of truncated claims
-#' and \eqn{b(E,d)=\frac{1}{n}t(E,d)}{b(E,d)=t(E,d)/n.}
+#' The truncated claim of claimant \eqn{i\in N} in \eqn{(E,d)} is the minimum of the claim and the endowment:
+#' \deqn{t_i(E,d)=\min\{d_i,E\},\ i=1,\dots,n.}
+#' Let \eqn{t(E,d)=(t_1(E,d),\dots,t_n(E,d))}{t(E,d)=(t1,\dots,tn)} be the vector of truncated claims and \eqn{b(E,d)=\frac{1}{n}t(E,d)}.
 #'
-#' The DT rule is defined recursively such that, in each step, each claimant receives the \eqn{n}-th part of the truncated claim.
+#' Let \eqn{(E^1,d^1)=(E,d)}. For each \eqn{k\ge 2} define:
+#'  \deqn{(E^k,d^k)=\Bigl(E^{k-1}-\sum_{i=1}^n b_i(E^{k-1},d^{k-1}),d^{k-1}-b(E^{k-1},d^{k-1})\Bigr).}
 #'
-#' Let \eqn{(E^1,d^1)=(E,d)}{(E1,\delta1)=(E,d)}. For each \eqn{k\ge 2} define:
-#'  \deqn{(E^k,d^k)=(E^{k-1}-\sum_{i=1}^n b_i(E^{k-1},d^{k-1}),d^{k-1}-b(E^{k-1},d^{k-1})).}{%
-#'  (Ek,\deltak) = ( E(k-1)-\sum bi( E(k-1),\delta(k-1) ) , \delta(k-1)-b(E(k-1),\delta(k-1)) ).}
-#'
-#' In step 1, the endowment is E and the claims vector is d.
+#' In step 1, the endowment is \eqn{E} and the claims vector is \eqn{d}.
 #' For \eqn{k \ge 2}, the endowment is the remainder once all the claimants have received the amount of the previous steps and the new vector of claims is readjusted accordingly.
 #' Observe that neither the endowment nor each agent's claim ever increases from one step to the next.
 #' This recursive process exhausts \eqn{E} in the limit.
 #'
-#'  For each \eqn{(E,d)} the Dominguez-Thomson rule assigns the awards vector:
-#' \deqn{DT(E,d)=\sum_{k=1}^{\infty} b(E^k,d^k)}{DT(E,d)=\sum b(Ek,\deltak), where the sum is taken from k=1 to infinity.}
-#' @seealso \link{allrules}
+#'  For each \eqn{(E,d)}, the Dominguez-Thomson rule (DT) assigns the awards vector:
+#' \deqn{\text{DT}(E,d)=\sum_{k=1}^{\infty} b(E^k,d^k).}
+#' @seealso \link{allrules}.
 #' @examples
 #' E=10
 #' d=c(2,4,7,8)
 #' DT(E,d)
-#' @references Domínguez, D. and Thomson, W. (2006). A new solution to the problem of adjudicating conflicting claims. Economic Theory, 28(2), 283-307.
+#' @references Domínguez, D. and Thomson, W. (2006). A new solution to the problem of adjudicating conflicting claims. Economic Theory 28(2), 283-307.
 #' @references Thomson, W. (2019). How to divide when there isn't enough. From Aristotle, the Talmud, and Maimonides to the axiomatics of resource allocation. Cambridge University Press.
 #' @export
 

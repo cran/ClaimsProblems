@@ -3,16 +3,18 @@
 #' @param E The endowment.
 #' @param d The vector of claims.
 #' @param name A logical value.
-#' @return The awards vector selected by the CEL rule. If name = TRUE, the name of the function (CEL) as a character string.
-#' @details Let \eqn{E\ge 0} be the endowment to be divided and let \eqn{d\in \mathcal{R}^n}{d} be the vector of claims
-#' with \eqn{d\ge 0} and such that \eqn{\sum_{i=1}^{n} d_i\ge E,}{} the sum of claims exceeds the endowment.
+#' @return The awards vector selected by the CEL rule. If \code{name = TRUE}, the name of the function (CEL) as a character string.
+#' @details Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{E\ge 0} the endowment to be divided and \eqn{d\in \mathbb{R}_+^N} the vector of claims
+#' such that \eqn{\sum_{i \in N} d_i\ge E}.
 #'
 #' The constrained equal losses rule (CEL) equalizes losses under the constraint that no award
-#' is negative. Then, claimant \eqn{i} receives the maximum of zero and the claim minus a number \eqn{\lambda \ge 0} chosen so as to achieve balance.
-#' \deqn{CEL_i(E,d)=\max\{0,d_i-\lambda\},\ i=1,\dots,n, \ such \  that  \ \sum_{i=1}^n CEL_i(E,d)=E.}{CEL(E,d)=(max\{0,di-\lambda\}).}
+#' is negative. Then, claimant \eqn{i} receives the maximum of zero and the claim minus a number \eqn{\lambda \ge 0} chosen so as to achieve balance. That is, for each \eqn{i\in N},
+#' \deqn{\text{CEL}_i(E,d)=\max\{0,d_i-\lambda\},}
+#'
+#'  where \eqn{\lambda\geq 0} is chosen  such that \eqn{\sum_{i\in N} \text{CEL}_i(E,d)=E.}
 #'
 #' CEA and CEL are dual rules.
-#' @seealso \link{allrules}, \link{CEA}
+#' @seealso \link{allrules}, \link{axioms}, \link{CE}, \link{CEA}, \link{AV}, \link{PIN}, \link{Talmud}, \link{RTalmud}.
 #' @examples
 #' E=10
 #' d=c(2,4,7,8)
@@ -20,8 +22,8 @@
 #' # CEL and CEA are dual: CEL(E,d)=d-CEA(D-E,d)
 #' D=sum(d)
 #' d-CEA(D-E,d)
-#' @references Maimonides, Moses, 1135-1204. Book of Judgements, Moznaim Publishing Corporation, New York, Jerusalem (Translated by Rabbi Elihahu Touger, 2000).
-#' @references  Thomson, W. (2019). How to divide when there isn't enough. From Aristotle, the Talmud, and Maimonides to the axiomatics of resource allocation. Cambridge University Press.
+#' @references Maimonides, Moses, [1135-1204], Book of Judgements (translated by Rabbi Elihahu Touger, 2000), New York and Jerusalem: Moznaim Publishing Corporation, 2000.
+#' @references Thomson, W. (2019). How to divide when there isn't enough. From Aristotle, the Talmud, and Maimonides to the axiomatics of resource allocation. Cambridge University Press.
 #' @export
 
 CEL = function(E, d, name = FALSE) {

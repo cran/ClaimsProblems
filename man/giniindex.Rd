@@ -11,7 +11,7 @@ giniindex(E, d, Rule)
 
 \item{d}{The vector of claims.}
 
-\item{Rule}{A rule: AA, APRO, CE, CEA, CEL, DT, MO, PIN, PRO, RA, Talmud.}
+\item{Rule}{A rule: AA, APRO, CE, CEA, CEL, AV, DT, MO, PIN, PRO, RA, Talmud, RTalmud.}
 }
 \value{
 The Gini index of a rule for a claims problem and the Gini index of the vector of claims.
@@ -20,19 +20,18 @@ The Gini index of a rule for a claims problem and the Gini index of the vector o
 This function returns the Gini index of any rule for a claims problem.
 }
 \details{
-Let \eqn{E> 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{d} the vector of claims
-with \eqn{d\ge 0} and such that \eqn{D=\sum_{i=1}^{n} d_i\ge E}{D=\sum di \ge E}, the sum of claims \eqn{D} exceeds the endowment.
+Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{E\ge 0} the endowment to be divided and \eqn{d\in \mathbb{R}_+^N} the vector of claims
+such that \eqn{\sum_{i \in N} d_i\ge E}.
 
-Rearrange the claims from small to large, \eqn{0 \le d_1 \le...\le d_n}{%
-0 \le d1 \le...\le dn}. The Gini index is a number aimed at measuring the degree of inequality in a distribution.
-The Gini index of the rule \eqn{R} for the problem \eqn{(E,d)}, denoted by \eqn{G(R,E,d)}, is
+Rearrange the claims from small to large, \eqn{0 \le d_1 \le...\le d_n}.
+The Gini index is a number aimed at measuring the degree of inequality in a distribution.
+The Gini index of the rule \eqn{\mathcal{R}} for the problem \eqn{(E,d)}, denoted by \eqn{G(\mathcal{R},E,d)}, is
 the ratio of the area that lies between the identity line and the Lorenz curve of the rule over the total area under the identity line.
 
-Let \eqn{R_0(E,d)=0}{R0(E,d)=0}. For each \eqn{k=0,\dots,n} define
-\eqn{X_k=\frac{k}{n}}{Xk=k/n} and
-\eqn{Y_k=\frac{1}{E} \sum_{j=0}^{k} R_j(E,d)}{Yk=(R0+\dots+Rk)/E}. Then
-\deqn{G(R,E,d)=1-\sum_{k=1}^{n}(X_{k}-X_{k-1})(Y_{k}+Y_{k-1}).}{G(R,E,d)=1-\sum (Xk-X(k-1))(Yk+Y(k-1) where the sum goes from k=1 to n.}
-In general \eqn{0\le G(R,E,d) \le 1}.
+Let \eqn{\mathcal{R}_0(E,d)=0}. For each \eqn{k=0,\dots,n} define
+\eqn{X_k=\frac{k}{n}} and \eqn{Y_k=\frac{1}{E} \sum_{j=0}^{k} \mathcal{R}_j(E,d)}. Then,
+\deqn{G(\mathcal{R},E,d)=1-\sum_{k=1}^{n}\Bigl(X_{k}-X_{k-1}\Bigr)\Bigl(Y_{k}+Y_{k-1}\Bigr).}
+In general \eqn{0\le G(\mathcal{R},E,d) \le 1}.
 }
 \examples{
 E=10
@@ -43,10 +42,10 @@ giniindex(E,d,Rule)
 giniindex(E,d,PRO)
 }
 \references{
-Ceriani, L. and Verme, P. (2012). The origins of the Gini index: extracts from Variabilitá e Mutabilitá (1912) by Corrado Gini. The Journal of Economic Inequality, 10(3), 421-443.
+Ceriani, L. and Verme, P. (2012). The origins of the Gini index: extracts from Variabilitá e Mutabilitá (1912) by Corrado Gini. The Journal of Economic Inequality 10(3), 421-443.
 
-Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez, E. (2022). Deviation from proportionality and Lorenz-domination for claims problems. Rev Econ Design. \doi{10.1007/s10058-022-00300-y}
+Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez Rodríguez, E. (2023). Deviation from proportionality and Lorenz-domination for claims problems. Review of Economic Design 27, 439-467.
 }
 \seealso{
-\link{lorenzcurve}, \link{cumawardscurve}, \link{deviationindex}, \link{indexgpath}, \link{lorenzdominance}.
+\link{cumawardscurve}, \link{deviationindex}, \link{indexgpath},  \link{lorenzcurve}, \link{lorenzdominance}.
 }

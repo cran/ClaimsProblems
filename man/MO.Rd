@@ -14,35 +14,34 @@ MO(E, d, name = FALSE)
 \item{name}{A logical value.}
 }
 \value{
-The awards vector selected by the MO rule. If name = TRUE, the name of the function (MO) as a character string.
+The awards vector selected by the MO rule. If \code{name = TRUE}, the name of the function (MO) as a character string.
 }
 \description{
 This function returns the awards vector assigned by the minimal overlap rule rule (MO) to a claims problem.
 }
 \details{
-Let \eqn{E\ge 0} be the endowment to be divided and \eqn{d\in \mathcal{R}^n}{d} the vector of claims
-with \eqn{d\ge 0} and such that \eqn{\sum_{i=1}^{n} d_i\ge E,\;}{} the sum of claims exceeds the endowment.
+Let \eqn{N=\{1,\ldots,n\}} be the set of claimants, \eqn{E\ge 0} the endowment to be divided and \eqn{d\in \mathbb{R}_+^N} the vector of claims
+such that \eqn{\sum_{i \in N} d_i\ge E}.
 
-The truncated claim of a claimant \eqn{i} is the minimum of the claim and the endowment:
-\deqn{t_i(E,d)=t_i=\min\{d_i,E\},\ i=1,\dots,n}{ti=min\{di,E\}, i=1,\dots,n}
+The truncated claim of a claimant \eqn{i\in N} is the minimum of the claim and the endowment, that is,
+\eqn{t_i(E,d)=t_i=\min\{d_i,E\},\ i=1,\dots,n.}
 
-Suppose that each agent claims specific parts of E equal to her/his
-claim. After arranging which parts agents claim so as to “minimize
-conflict”, equal division prevails among all agents claiming a
-specific part and each agent receives the sum of the compensations
-she/he gets from the various parts that he claimed.
+Suppose that each agent claims specific parts of \eqn{E} equal to her/his claim. After arranging which
+parts agents claim so as to “minimize conflict”, equal division prevails among all agents claiming
+a specific part and the minimal overlap rule (MO) assigns the sum of the compensations she/he gets
+from the various parts that he claimed.
 
-Let \eqn{d_0=0}{d0=0}. The minimal overlap rule is defined, for each problem \eqn{(E,d)} and each claimant \eqn{i}, as:
+Let \eqn{d_0=0}. For each problem \eqn{(E,d)} and each claimant \eqn{i\in N},
 
-If \eqn{E\le d_n} then
-\deqn{MO_i(E,d)=\frac{t_1}{n}+\frac{t_2-t_1}{n-1}+\dots+\frac{t_i-t_{i-1}}{n-i+1}.}{%
-MOi(E,d) = t1/n + (t2-t1)/(n-1) + \dots + (ti-t(i-1))/(n-i+1).}
+1) If \eqn{E\le d_n} then
+\deqn{\text{MO}_i(E,d)=\frac{t_1}{n}+\frac{t_2-t_1}{n-1}+\dots+\frac{t_i-t_{i-1}}{n-i+1}.}
 
-If \eqn{E>d_n} let \eqn{s\in (d_k,d_{k+1}]}{dk<s \le d(k+1)}, with \eqn{k\in \{0,1,\dots,n-2\}}{0\le k \le n-2},
-be the unique solution to the equation \eqn{\sum_{i \in N} \max\{d_i-s,0\} =E-s}{max\{d1-s,0\}+\dots+max\{dn-s,0\}=E-s}. Then:
-\deqn{MO_i(E,d)=\frac{d_1}{n}+\frac{d_2-d_1}{n-1}+\dots+\frac{d_i-d_{i-1}}{n-i+1}, \  i\in\{1,\dots,k\}}{%
-MOi(E,d) = d1/n + (d2-d1)/(n-1) + \dots + (di-d(i-1))/(n-i+1), if i\le k}
-\deqn{MO_i(E,d)=MO_i(s,d)+d_i-s, \  i\in\{k+1,\dots,n\}.}{MOi(E,d) = MOi(s,d)+di-s,  if  i>k+1.}
+2) If \eqn{E>d_n}, let \eqn{s'\in (d_{k'},d_{k'+1}]}, with \eqn{k' \in \{0,1,\dots,n-2\}}, be the unique solution to the equation \eqn{\underset{j \in N}{\sum} \max\{d_j-s,0\} =E-s}. Then,
+ \deqn{\text{MO}_i(E,d)=    \begin{cases}
+ \frac{d_1}{n}+\frac{d_2-d_1}{n-1}+\dots+\frac{d_i-d_{i-1}}{n-i+1}&  \text{if } i\in \{1,\dots , k'\}
+ \\[4pt]
+ \text{MO}_i(s',d)+d_i-s' &  \text{if } i\in \{k'+1,\dots, n\}
+   \end{cases}.}
 }
 \examples{
 E=10
@@ -50,9 +49,9 @@ d=c(2,4,7,8)
 MO(E,d)
 }
 \references{
-Mirás Calvo, M.A., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2021). The adjusted proportional and the minimal overlap rules restricted to the lower-half, higher-half, and middle domains. Working paper 2021-02, ECOBAS.
+Mirás Calvo, M.Á., Núñez Lugilde, I., Quinteiro Sandomingo, C., and Sánchez-Rodríguez, E. (2023). Refining the Lorenz‐ranking of rules for claims problems on restricted domains. International Journal of Economic Theory 19(3), 526-558.
 
-O'Neill, B. (1982). A problem of rights arbitration from the Talmud. Math. Social Sci. 2, 345-371.
+O'Neill, B. (1982). A problem of rights arbitration from the Talmud. Mathemathical Social Sciences. 2, 345-371.
 
 Thomson, W. (2019). How to divide when there isn't enough. From Aristotle, the Talmud, and Maimonides to the axiomatics of resource allocation. Cambridge University Press.
 }
